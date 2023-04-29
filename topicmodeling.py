@@ -1,3 +1,39 @@
+from sklearn.decomposition import LatentDirichletAllocation
+import numpy as np
+from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
+import os
+import pickle
+import string
+import re
+import pandas as pd
+import numpy as np
+import sys
+#!{sys.executable} -m pip install plotly
+import plotly.express as px
+import warnings
+import nltk
+from nltk.corpus import stopwords
+from getopt import getopt
+from sys import exit, argv, version_info
+import emoji
+from collections import Counter
+
+import pickle
+
+from sklearn.metrics                    import classification_report
+from sklearn.preprocessing              import MinMaxScaler
+from sklearn.model_selection            import train_test_split
+from imblearn.over_sampling             import RandomOverSampler
+from imblearn.under_sampling            import RandomUnderSampler
+from sklearn.linear_model               import LogisticRegression
+from sklearn.feature_extraction.text    import CountVectorizer, TfidfVectorizer
+from sklearn.naive_bayes                import GaussianNB, MultinomialNB, BernoulliNB
+from nltk.tokenize import RegexpTokenizer
+
+
+
+
+
 # Variables globales
 INPUT_FILE      = "TweetsTrainDev.csv"              # Path del archivo de entrada
 OUTPUT_PATH     = "./models"                        # Path de los archivos de salida
@@ -184,6 +220,21 @@ def atributos_excepto(atributos, excepciones):
             atribs.append(a)
 
     return atribs
+
+def display_topics(H, W, feature_names, documents, no_top_words, no_top_documents):
+    for topic_idx, topic in enumerate(H):
+        print("Topic %d:" % (topic_idx))
+        print(''.join([' ' +feature_names[i] + ' ' + str(round(topic[i], 5)) #y esto también
+                for i in topic.argsort()[:-no_top_words - 1:-1]]))
+        top_doc_indices = np.argsort( W[:,topic_idx] )[::-1][0:no_top_documents]
+        docProbArray=np.argsort(W[:,topic_idx])
+        print(docProbArray)
+        howMany=len(docProbArray);
+        print("How Many");
+        print(howMany);
+        for doc_index in top_doc_indices:
+            print(documents[doc_index])
+
 
 #######################################################################################
 #                               PREPROCESADO DE TEXTO                                 #
@@ -480,15 +531,15 @@ def main():
         ml_dataset["wo_stopfreq"] = ml_dataset["no_sw"]
 
     # Stemming da mejores resultados. Dejamos Lematización comentado
-    if LEMATIZE:
+    #if LEMATIZE:
         #wordnet_lem = WordNetLemmatizer()
         #ml_dataset['wo_stopfreq_lem'] = ml_dataset['wo_stopfreq'].apply(wordnet_lem.lemmatize) # Lematizamos las palabras
         
-        porter = PorterStemmer()
-        ml_dataset["wo_stopfreq_lem"] = ml_dataset["wo_stopfreq"].apply(porter.stem)
+        #porter = PorterStemmer()
+        #ml_dataset["wo_stopfreq_lem"] = ml_dataset["wo_stopfreq"].apply(porter.stem)
 
-    else:
-        ml_dataset['wo_stopfreq_lem'] = ml_dataset['wo_stopfreq']
+    #else:
+    ml_dataset['wo_stopfreq_lem'] = ml_dataset['wo_stopfreq']
 
     # Para ver el preprocesado de texto
     if DEBUG:
@@ -499,8 +550,9 @@ def main():
     cv = CountVectorizer(stop_words='english', ngram_range = (1,1), tokenizer = token.tokenize)
     tf = TfidfVectorizer(min_df=7, max_df=0.5, ngram_range=(1, 2), stop_words=stopwords.words('english'))
 
-    bow     = cv.fit_transform(ml_dataset['wo_stopfreq_lem'])
-    tfidf   = tf.fit_transform(ml_dataset['wo_stopfreq_lem'])
+    #bow     = cv.fit_transform(ml_dataset['wo_stopfreq_lem'])
+    tfidf   = cv.fit_transform(ml_dataset['wo_stopfreq_lem'])
+    tf_nombre_atributos=cv.get_feature_names()
 
     # Escalamos el texto -> NO CONSEGUIMOS MEJORES RESULTADOS
     # print("-- ESCALADO DE TEXTO")
@@ -513,37 +565,50 @@ def main():
     elif VECTORIZING == "TFIDF":
         dataframe = pd.DataFrame(tfidf.toarray()) #Si se escala hay que quitar el .toarray()
 
-    # Añadimos los atributos seleccionados al dataset
-    dataframe['__target__'] = ml_dataset['__target__']
+    
+    lda=True
+    if( not lda):
+        # Añadimos los atributos seleccionados al dataset
+        dataframe['__target__'] = ml_dataset['__target__']
 
-    # Division Train y Dev
-    print("-- TRAIN Y DEV SPLIT")
-    train, dev = train_test_split(dataframe,test_size=DEV_SIZE,random_state=RANDOM_STATE,stratify=dataframe[['__target__']])
+        # Division Train y Dev
+        print("-- TRAIN Y DEV SPLIT")
+        train, dev = train_test_split(dataframe,test_size=DEV_SIZE,random_state=RANDOM_STATE,stratify=dataframe[['__target__']])
 
-    trainX = train.drop('__target__', axis=1)
-    trainY = np.array(train['__target__'])
-    devX = dev.drop('__target__', axis=1)
-    devY = np.array(dev['__target__'])
+        trainX = train.drop('__target__', axis=1)
+        trainY = np.array(train['__target__'])
+        devX = dev.drop('__target__', axis=1)
+        devY = np.array(dev['__target__'])
 
-    # Undersampling
-    if SAMPLING == "UNDERSAMPLING":
-        undersample = RandomUnderSampler(sampling_strategy="not minority", random_state=RANDOM_STATE)   # Balancea todas las clases menos la minoritaria
-        trainX,trainY = undersample.fit_resample(trainX,trainY)
-        devX,devY = undersample.fit_resample(devX, devY)
-    elif SAMPLING == "OVERSAMPLING":
-        oversample = RandomOverSampler(sampling_strategy='not majority', random_state=RANDOM_STATE)    # Balancea todas las clases menos la mayoritaria
-        trainX,trainY = oversample.fit_resample(trainX,trainY)
-        devX,devY = oversample.fit_resample(devX, devY)
+        # Undersampling
+        if SAMPLING == "UNDERSAMPLING":
+            undersample = RandomUnderSampler(sampling_strategy="not minority", random_state=RANDOM_STATE)   # Balancea todas las clases menos la minoritaria
+            trainX,trainY = undersample.fit_resample(trainX,trainY)
+            devX,devY = undersample.fit_resample(devX, devY)
+        elif SAMPLING == "OVERSAMPLING":
+            oversample = RandomOverSampler(sampling_strategy='not majority', random_state=RANDOM_STATE)    # Balancea todas las clases menos la mayoritaria
+            trainX,trainY = oversample.fit_resample(trainX,trainY)
+            devX,devY = oversample.fit_resample(devX, devY)
 
-    # Entrenando modelos
-    print("-- TRAINING MODELS")
-    # TODO: Completar con topic modeling
+            # Entrenando modelos
+        print("-- TRAINING MODELS")
+        # TODO: Completar con topic modeling
+    else:
+        no_topics=5
+        no_top_words=30
+        no_top_documents=10
+        lda_model = LatentDirichletAllocation(n_components=no_topics, max_iter=100, learning_method='online', learning_offset=50.,random_state=0).fit(tf)
+        lda_W = lda_model.transform(tf)
+
+        lda_H=lda_model.components_ /lda_model.components_.sum(axis=1)[:, np.newaxis] 
+        print("LDA Topics")
+        display_topics(lda_H, lda_W, tf_nombre_atributos, dataframe['text'].tolist(), no_top_words, no_top_documents)
 
 if __name__ == "__main__":
     try:
         # options: registra los argumentos del usuario
         # remainder: registra los campos adicionales introducidos -> entrenar_knn.py esto_es_remainder
-        options, remainder = getopt(argv[1:], 'hi:o:t:d:g:w:e:c:s:f:l:v:u:', ['help', 'input', 'output', 'target', 'debug', 'debugfile'])
+        options, remainder = getopt(argv[1:], 'h:i:o:t:d:g:w:e:c:s:f:l:v:u:', ['help', 'input', 'output', 'target', 'debug', 'debugfile'])
         
     except getopt.GetoptError as err:
         # Error al parsear las opciones del comando
