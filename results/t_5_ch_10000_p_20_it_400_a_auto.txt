@@ -1,0 +1,123 @@
+Numero de topicos 	: 5
+chunksize 	: 10000
+passes 	: 20
+iterations 	: 400
+alpha 	: auto
+
+topic coherence 	: -15.509068305759746
+
+-13.990212498556525
+ Palabras del topic: 
+Palabra connectin 	 %0.0005151634
+Palabra boss 	 %0.0005138095
+Palabra 30000ft 	 %0.00049777306
+Palabra hipunis 	 %0.0004939915
+Palabra el 	 %0.00049131335
+Palabra isitthegarykellyway 	 %0.00048749673
+Palabra mintalicious 	 %0.0004844877
+Palabra acknowledge 	 %0.00048113856
+Palabra desk 	 %0.0004774433
+Palabra triage 	 %0.00047626242
+Palabra addresses 	 %0.0004740421
+Palabra dunno 	 %0.00047052052
+Palabra awesom 	 %0.00046499912
+Palabra autoresponse 	 %0.00046273053
+Palabra 372 	 %0.00045966535
+Palabra terri 	 %0.0004591462
+Palabra bday 	 %0.00045847634
+Palabra cross_mark 	 %0.00045711244
+Palabra com 	 %0.00045578033
+Palabra aal 	 %0.00045459653
+
+-15.097915237087403
+ Palabras del topic: 
+Palabra calling 	 %0.0005945192
+Palabra stuff 	 %0.00057208433
+Palabra 900 	 %0.00054523576
+Palabra 1914 	 %0.00052583223
+Palabra devic 	 %0.0005166471
+Palabra pooch 	 %0.0005073079
+Palabra oil 	 %0.00050703925
+Palabra canadian 	 %0.0005041092
+Palabra nostalgic 	 %0.0005039144
+Palabra paperwork 	 %0.0005026016
+Palabra delete 	 %0.0005013532
+Palabra cebu 	 %0.0005001895
+Palabra broken_heart 	 %0.0004963754
+Palabra acceptable 	 %0.0004951719
+Palabra 806 	 %0.0004939367
+Palabra 556 	 %0.0004929718
+Palabra controlled 	 %0.00048491944
+Palabra ts 	 %0.00048482718
+Palabra aeroport 	 %0.00048423393
+Palabra tkvmhbkec3 	 %0.00048328086
+
+-15.918404932648443
+ Palabras del topic: 
+Palabra hated 	 %0.0007007882
+Palabra handled 	 %0.000676341
+Palabra meagan 	 %0.0006723945
+Palabra donthavehighhop 	 %0.0006698157
+Palabra cvba4olcbl 	 %0.0006446482
+Palabra bandie 	 %0.0006387133
+Palabra inevit 	 %0.0006380111
+Palabra inquiring 	 %0.0006308689
+Palabra patience 	 %0.000627824
+Palabra defective 	 %0.0006224415
+Palabra 46am1bsi2g 	 %0.00061997864
+Palabra michelle 	 %0.00061979116
+Palabra rim 	 %0.0006157033
+Palabra giants 	 %0.0006145024
+Palabra charlott 	 %0.0006113875
+Palabra reassign 	 %0.0006102348
+Palabra downgraded 	 %0.0006068049
+Palabra pepperidge 	 %0.0006034449
+Palabra sarah 	 %0.0006023938
+Palabra stand 	 %0.0006017223
+
+-16.088391822030967
+ Palabras del topic: 
+Palabra mite 	 %0.0006870577
+Palabra falseadvertis 	 %0.0006663399
+Palabra lines 	 %0.00063618267
+Palabra 46mins 	 %0.0006229449
+Palabra arriving 	 %0.00059656834
+Palabra floors 	 %0.0005955996
+Palabra disspointed 	 %0.0005943906
+Palabra injury 	 %0.0005826973
+Palabra rain 	 %0.00058043574
+Palabra 2morrow 	 %0.00057739526
+Palabra 5sep 	 %0.0005759179
+Palabra fre 	 %0.00057101017
+Palabra stoked 	 %0.00056850375
+Palabra condo 	 %0.00056762836
+Palabra a18 	 %0.0005632927
+Palabra faced 	 %0.00056171604
+Palabra biz 	 %0.0005609906
+Palabra tux 	 %0.0005604321
+Palabra 12pm 	 %0.0005603891
+Palabra funit 	 %0.0005599399
+
+-16.4504170384754
+ Palabras del topic: 
+Palabra november 	 %0.00075908896
+Palabra ch0nmjymgh 	 %0.0006877605
+Palabra auf 	 %0.0006874062
+Palabra peeled 	 %0.0006708112
+Palabra duh 	 %0.0006632264
+Palabra ow 	 %0.0006590822
+Palabra ella 	 %0.0006587763
+Palabra setup 	 %0.00065866153
+Palabra lovely 	 %0.0006534012
+Palabra deceptive 	 %0.000639175
+Palabra colonist 	 %0.00063831767
+Palabra referencing 	 %0.00063640677
+Palabra nottrue 	 %0.0006360904
+Palabra struggling 	 %0.0006288789
+Palabra patrick 	 %0.00061813724
+Palabra 276 	 %0.00061728514
+Palabra 0530 	 %0.00061547104
+Palabra dfw 	 %0.00061521766
+Palabra laps 	 %0.0006133035
+Palabra flex 	 %0.0006046243
+

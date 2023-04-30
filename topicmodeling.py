@@ -1,5 +1,41 @@
+# Imports del script
+from sys import exit, argv, version_info
+from getopt import getopt
+import os
+import json
+
+import re
+import emoji
+import string
+import pandas as pd
+import numpy as np
+
+import nltk
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
+from nltk.tokenize import RegexpTokenizer
+from nltk.stem import WordNetLemmatizer
+from collections import Counter
+
+from nltk.stem import PorterStemmer
+
+import pickle
+
+from sklearn.metrics                    import classification_report
+from sklearn.preprocessing              import MinMaxScaler
+from sklearn.model_selection            import train_test_split
+from imblearn.over_sampling             import RandomOverSampler
+from imblearn.under_sampling            import RandomUnderSampler
+from sklearn.linear_model               import LogisticRegression
+from sklearn.feature_extraction.text    import CountVectorizer, TfidfVectorizer
+from sklearn.naive_bayes                import GaussianNB, MultinomialNB, BernoulliNB
+
+# Train LDA model.
+from gensim.models import LdaModel
+from gensim.matutils import Sparse2Corpus
+
 # Variables globales
-INPUT_FILE      = "TweetsTrainDev.csv"              # Path del archivo de entrada
+INPUT_FILE      = "./data/TweetsTrainDev.csv"              # Path del archivo de entrada
 OUTPUT_PATH     = "./models"                        # Path de los archivos de salida
 TARGET_NAME     = "airline_sentiment"               # Nombre de la columna a clasificar
 ATRIBUTOS       = ['text', 'airline_sentiment']     # Atributos que seleccionamos del dataset | TODOS o lista
@@ -18,7 +54,7 @@ FREQ_WORDS      = True                              # Borramos las palabras más
 LEMATIZE        = True                              # Lematizamos el texto (realmente hacemos Stemming)
 VECTORIZING     = "TFIDF"                           # Sistema de vectorización: BOW | TFIDF
 
-SAMPLING        = "OVERSAMPLING"                    # Método de muestreo de nuestro dataset: OVERSAMPLING \ UNDERSAMPLING | NONE
+SAMPLING        =  "NONE "                          # Método de muestreo de nuestro dataset: OVERSAMPLING \ UNDERSAMPLING | NONE
 
 # Downloads necesarios
 stop_words = stopwords.words()
@@ -184,6 +220,50 @@ def atributos_excepto(atributos, excepciones):
             atribs.append(a)
 
     return atribs
+
+def guardar_resultadosLDA(configuracion, resultado, topic_coherence):
+    #crear carpeta para guardar resultados 
+    if not os.path.exists('results'):
+        os.makedirs('results')
+
+    num_topics = configuracion['n_topics']
+    chunksize = configuracion['chunksize']
+    passes = configuracion['passes']
+    iterations = configuracion['iterations']
+    alpha = configuracion['alpha']
+
+    filename = "results/t_"+str(num_topics)+"_ch_"+str(chunksize)+"_p_"+str(passes)+"_it_"+str(iterations)+"_a_"+str(alpha)+".txt"
+    with open(filename, "w") as file:
+
+        # Escribir los resultados en el archivo de texto
+        file.write(f"Numero de topicos \t: {num_topics}\n")
+        file.write(f"chunksize \t: {chunksize}\n")
+        file.write(f"passes \t: {passes}\n")
+        file.write(f"iterations \t: {iterations}\n")
+        file.write(f"alpha \t: {alpha}\n")
+        file.write("\n")
+        file.write(f"topic coherence \t: {topic_coherence}\n")
+        file.write("\n")
+        for topic in resultado:
+            #no se que es este numero
+            file.write(str(topic[1]))
+            #palabras del topic
+            file.write("\n Palabras del topic: \n")
+            palabras = []
+            palabras = topic[0]
+            for palabra in palabras:
+                file.write("Palabra "+str(palabra[1])+" \t %"+ str(palabra[0])+"\n")
+            file.write("\n")
+
+    #guardar registro de las pruebas realizadas
+    with open("pruebasRealizadas.txt", "a") as archivo:
+        archivo.write(f"Numero de topicos \t: {num_topics}\n")
+        archivo.write(f"chunksize \t: {chunksize}\n")
+        archivo.write(f"passes \t: {passes}\n")
+        archivo.write(f"iterations \t: {iterations}\n")
+        archivo.write(f"alpha \t: {alpha}\n")
+        archivo.write("------------------------------------------ \n")
+        
 
 #######################################################################################
 #                               PREPROCESADO DE TEXTO                                 #
@@ -446,10 +526,10 @@ def main():
     estandarizar_tipos_de_datos(ml_dataset, categorical_features, numerical_features, text_features)
 
     # Tratamos el Target attribute
-    target_map = {'negative': 0, 'neutral': 1, 'positive': 2}
-    ml_dataset['__target__'] = ml_dataset[TARGET_NAME].map(str).map(target_map)
-    ml_dataset = ml_dataset[~ml_dataset['__target__'].isnull()]
-    del ml_dataset[TARGET_NAME]
+    #target_map = {'negative': 0, 'neutral': 1, 'positive': 2}
+    #ml_dataset['__target__'] = ml_dataset[TARGET_NAME].map(str).map(target_map)
+    #ml_dataset = ml_dataset[~ml_dataset['__target__'].isnull()]
+    #del ml_dataset[TARGET_NAME]
 
     # Preprocesado del texto
     print("-- PREPROCESADO DE TEXTO")
@@ -497,7 +577,8 @@ def main():
     # Crear Bag Of Words or TFIDF
     token = RegexpTokenizer(r'[a-zA-Z0-9]+')
     cv = CountVectorizer(stop_words='english', ngram_range = (1,1), tokenizer = token.tokenize)
-    tf = TfidfVectorizer(min_df=7, max_df=0.5, ngram_range=(1, 2), stop_words=stopwords.words('english'))
+    #tf = TfidfVectorizer(min_df=7, max_df=0.5, ngram_range=(1, 2), stop_words=stopwords.words('english'))
+    tf = TfidfVectorizer(stop_words=stopwords.words('english'))
 
     bow     = cv.fit_transform(ml_dataset['wo_stopfreq_lem'])
     tfidf   = tf.fit_transform(ml_dataset['wo_stopfreq_lem'])
@@ -514,16 +595,16 @@ def main():
         dataframe = pd.DataFrame(tfidf.toarray()) #Si se escala hay que quitar el .toarray()
 
     # Añadimos los atributos seleccionados al dataset
-    dataframe['__target__'] = ml_dataset['__target__']
+    #dataframe['__target__'] = ml_dataset['__target__']
 
     # Division Train y Dev
-    print("-- TRAIN Y DEV SPLIT")
-    train, dev = train_test_split(dataframe,test_size=DEV_SIZE,random_state=RANDOM_STATE,stratify=dataframe[['__target__']])
+    #print("-- TRAIN Y DEV SPLIT")
+    #train, dev = train_test_split(dataframe,test_size=DEV_SIZE,random_state=RANDOM_STATE,stratify=dataframe[['__target__']])
 
-    trainX = train.drop('__target__', axis=1)
-    trainY = np.array(train['__target__'])
-    devX = dev.drop('__target__', axis=1)
-    devY = np.array(dev['__target__'])
+    #trainX = train.drop('__target__', axis=1)
+    #trainY = np.array(train['__target__'])
+    #devX = dev.drop('__target__', axis=1)
+    #devY = np.array(dev['__target__'])
 
     # Undersampling
     if SAMPLING == "UNDERSAMPLING":
@@ -538,6 +619,53 @@ def main():
     # Entrenando modelos
     print("-- TRAINING MODELS")
     # TODO: Completar con topic modeling
+
+    ## gensim LDA model
+
+    #parametros para el training
+    # Set training parameters.
+    num_topics = 10
+    chunksize = 10000
+    passes = 20
+    iterations = 400
+    eval_every = None  # Don't evaluate model perplexity, takes too much time.
+    alpha='auto'
+
+    corpus = Sparse2Corpus(tfidf)
+    
+    vocabulary_dict = tf.vocabulary_
+    aux = {index:word for word,index in vocabulary_dict.items()}
+    id2word = {index:word for index, word in aux.items()}
+
+
+    model = LdaModel(
+        corpus=corpus,
+        id2word=id2word,
+        chunksize=chunksize,
+        alpha=alpha,
+        eta='auto',
+        iterations=iterations,
+        num_topics=num_topics,
+        passes=passes,
+        eval_every=eval_every
+    )
+
+    configuracion = {'n_topics': num_topics,
+                     'chunksize': chunksize,
+                     'passes':passes,
+                     'iterations':iterations,
+                     'alpha':alpha
+                     }
+
+    top_topics = model.top_topics(corpus)
+
+    # Average topic coherence is the sum of topic coherences of all topics, divided by the number of topics.
+    avg_topic_coherence = sum([t[1] for t in top_topics]) / num_topics
+    print('Average topic coherence: %.4f.' % avg_topic_coherence)
+
+    from pprint import pprint
+    pprint(top_topics)
+    guardar_resultadosLDA(configuracion=configuracion, resultado=top_topics, topic_coherence=avg_topic_coherence)
 
 if __name__ == "__main__":
     try:
