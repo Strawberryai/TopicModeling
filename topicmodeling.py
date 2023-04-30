@@ -547,12 +547,12 @@ def main():
 
     # Crear Bag Of Words or TFIDF
     token = RegexpTokenizer(r'[a-zA-Z0-9]+')
-    cv = CountVectorizer(stop_words='english', ngram_range = (1,1), tokenizer = token.tokenize)
+    cv = CountVectorizer(max_df=0.95,min_df=2,stop_words='english', ngram_range = (1,1), tokenizer = token.tokenize)
     tf = TfidfVectorizer(min_df=7, max_df=0.5, ngram_range=(1, 2), stop_words=stopwords.words('english'))
 
     #bow     = cv.fit_transform(ml_dataset['wo_stopfreq_lem'])
     tfidf   = cv.fit_transform(ml_dataset['wo_stopfreq_lem'])
-    tf_nombre_atributos=cv.get_feature_names()
+    tf_nombre_atributos=cv.vocabulary_.keys()
 
     # Escalamos el texto -> NO CONSEGUIMOS MEJORES RESULTADOS
     # print("-- ESCALADO DE TEXTO")
@@ -597,12 +597,12 @@ def main():
         no_topics=5
         no_top_words=30
         no_top_documents=10
-        lda_model = LatentDirichletAllocation(n_components=no_topics, max_iter=100, learning_method='online', learning_offset=50.,random_state=0).fit(tf)
-        lda_W = lda_model.transform(tf)
+        lda_model = LatentDirichletAllocation(n_components=no_topics, max_iter=100, learning_method='online', learning_offset=50.,random_state=0).fit(tfidf)
+        lda_W = lda_model.transform(tfidf)
 
         lda_H=lda_model.components_ /lda_model.components_.sum(axis=1)[:, np.newaxis] 
         print("LDA Topics")
-        display_topics(lda_H, lda_W, tf_nombre_atributos, dataframe['text'].tolist(), no_top_words, no_top_documents)
+        display_topics(lda_H, lda_W, tf_nombre_atributos, ml_dataset['wo_stopfreq_lem'], no_top_words, no_top_documents)
 
 if __name__ == "__main__":
     try:
