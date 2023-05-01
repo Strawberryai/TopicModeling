@@ -224,14 +224,14 @@ def atributos_excepto(atributos, excepciones):
 def display_topics(H, W, feature_names, documents, no_top_words, no_top_documents):
     for topic_idx, topic in enumerate(H):
         print("Topic %d:" % (topic_idx))
-        print(''.join([' ' +feature_names[i] + ' ' + str(round(topic[i], 5)) #y esto también
-                for i in topic.argsort()[:-no_top_words - 1:-1]]))
-        top_doc_indices = np.argsort( W[:,topic_idx] )[::-1][0:no_top_documents]
+        print(''.join([' ' + feature_names[i] + ' ' + str(round(topic[i], 5))
+                for i in list(topic.argsort())[:-no_top_words - 1:-1]]))
+        top_doc_indices = np.argsort(W[:, topic_idx])[::-1][0:no_top_documents]
         docProbArray=np.argsort(W[:,topic_idx])
         print(docProbArray)
-        howMany=len(docProbArray);
-        print("How Many");
-        print(howMany);
+        howMany=len(docProbArray)
+        print("How Many")
+        print(howMany)
         for doc_index in top_doc_indices:
             print(documents[doc_index])
 
@@ -552,7 +552,7 @@ def main():
 
     #bow     = cv.fit_transform(ml_dataset['wo_stopfreq_lem'])
     tfidf   = cv.fit_transform(ml_dataset['wo_stopfreq_lem'])
-    tf_nombre_atributos=cv.vocabulary_.keys()
+    tf_nombre_atributos=list(cv.vocabulary_.keys())
 
     # Escalamos el texto -> NO CONSEGUIMOS MEJORES RESULTADOS
     # print("-- ESCALADO DE TEXTO")
