@@ -1,0 +1,124 @@
+
+Numero de topicos 	: 5
+chunksize 	: 20000
+passes 	: 30
+iterations 	: 100
+alpha 	: 1e-05
+
+topic coherence 	: -11.933718875601976
+
+-8.797124630042267
+ Palabras del topic: 
+Palabra travel 	 %0.00036712817
+Palabra killed 	 %0.00036184158
+Palabra mha3xxaed5 	 %0.00036184114
+Palabra nature 	 %0.00036183733
+Palabra ml1jacpmch 	 %0.00036183686
+Palabra n366sw 	 %0.00036183663
+Palabra n9vge2npib 	 %0.00036183657
+Palabra nonworking 	 %0.00036183215
+Palabra leisure 	 %0.0003618314
+Palabra oreo 	 %0.0003618253
+Palabra 1aavvoreph 	 %0.00036178343
+Palabra commands 	 %0.00036178337
+Palabra sudden 	 %0.00036178328
+Palabra haning 	 %0.00036178323
+Palabra asus 	 %0.00035345982
+Palabra bullshit 	 %0.00034863365
+Palabra stollen 	 %0.00034832783
+Palabra jrbzlhrw7i 	 %0.00034755544
+Palabra mavigetbbw 	 %0.0003443966
+Palabra inefficient 	 %0.0003437515
+
+-10.088002019789247
+ Palabras del topic: 
+Palabra scott 	 %0.0003536567
+Palabra microsecond 	 %0.0003340884
+Palabra sat 	 %0.00033336517
+Palabra poc 	 %0.00033308347
+Palabra fran 	 %0.0003301254
+Palabra santo 	 %0.00032950408
+Palabra oma 	 %0.00032950114
+Palabra smart 	 %0.0003232692
+Palabra placed 	 %0.0003223157
+Palabra mtgs 	 %0.00031977624
+Palabra red_exclamation_mark 	 %0.00031903732
+Palabra sosmart 	 %0.00031903302
+Palabra 3pm 	 %0.00031862344
+Palabra fixing 	 %0.00031734773
+Palabra badbussiness 	 %0.00031734418
+Palabra messages 	 %0.00031734392
+Palabra girl 	 %0.0003167607
+Palabra dinn 	 %0.00031548462
+Palabra 50th 	 %0.00031370338
+Palabra safe 	 %0.0003135125
+
+-10.35113383378359
+ Palabras del topic: 
+Palabra 1657 	 %0.0004435787
+Palabra health 	 %0.00043283706
+Palabra 4487 	 %0.00042553068
+Palabra centric 	 %0.00042370395
+Palabra 838 	 %0.0004227659
+Palabra ifc 	 %0.000405618
+Palabra linked 	 %0.0004044973
+Palabra fml 	 %0.00040008794
+Palabra frigidfriday 	 %0.00039604344
+Palabra notifying 	 %0.00039563223
+Palabra compensating 	 %0.0003956307
+Palabra 1hour 	 %0.00039375725
+Palabra modelodenegocio 	 %0.0003899938
+Palabra blind 	 %0.0003899925
+Palabra arena 	 %0.00038434583
+Palabra 600117 	 %0.000379009
+Palabra subsequent 	 %0.00037738748
+Palabra 450 	 %0.00037471624
+Palabra bish 	 %0.00037296466
+Palabra 800iflyswa 	 %0.0003714684
+
+-13.388787519489473
+ Palabras del topic: 
+Palabra n559jb 	 %0.00034219216
+Palabra dca48810m 	 %0.00033882636
+Palabra staffed 	 %0.00033759538
+Palabra second 	 %0.0003360855
+Palabra dignity 	 %0.00033563637
+Palabra brd 	 %0.00032953746
+Palabra freeconcert 	 %0.00032877526
+Palabra suggest 	 %0.0003229956
+Palabra familiar 	 %0.00032188377
+Palabra slowing 	 %0.00032162524
+Palabra relax 	 %0.00032082162
+Palabra 1f 	 %0.0003206969
+Palabra gate4 	 %0.00032006344
+Palabra serve 	 %0.00031970142
+Palabra 4609 	 %0.00031898124
+Palabra odd 	 %0.00031788158
+Palabra bom 	 %0.00031624865
+Palabra shitty 	 %0.00031530714
+Palabra forev 	 %0.00031508633
+Palabra justsay 	 %0.00031385807
+
+-17.043546374905297
+ Palabras del topic: 
+Palabra strandednyc 	 %0.00046275757
+Palabra 6yo 	 %0.0004425979
+Palabra spain 	 %0.00042972772
+Palabra jetblueforev 	 %0.00042741818
+Palabra 4420 	 %0.00041764675
+Palabra notnice 	 %0.00041760388
+Palabra aircraft 	 %0.00041713493
+Palabra 1861 	 %0.00041579735
+Palabra chairmanlov 	 %0.0004097504
+Palabra 17a 	 %0.00040969328
+Palabra performance 	 %0.00040950574
+Palabra millions 	 %0.00040897142
+Palabra stood 	 %0.00040771457
+Palabra kill 	 %0.00040577885
+Palabra spok 	 %0.0004032644
+Palabra 159 	 %0.00039951352
+Palabra pac 	 %0.0003981202
+Palabra connolly 	 %0.00039684112
+Palabra crumbs 	 %0.00039474477
+Palabra oh 	 %0.00039205697
+

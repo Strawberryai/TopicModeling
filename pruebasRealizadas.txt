@@ -10,3 +10,54 @@ passes 	: 20
 iterations 	: 400
 alpha 	: auto
 ------------------------------------------
+Numero de topicos 	: 5
+chunksize 	: 20000
+passes 	: 30
+iterations 	: 600
+alpha 	: 0.001
+------------------------------------------ 
+Numero de topicos 	: 5
+chunksize 	: 20000
+passes 	: 30
+iterations 	: 100
+alpha 	: 1e-05
+------------------------------------------ 
+Numero de topicos 	: 5
+chunksize 	: 40000
+passes 	: 20
+iterations 	: 800
+alpha 	: 1e-05
+------------------------------------------ 
+Numero de topicos 	: 5
+chunksize 	: 40000
+passes 	: 20
+iterations 	: 800
+alpha 	: 1e-05
+------------------------------------------ 
+Numero de topicos 	: 5
+chunksize 	: 40000
+passes 	: 20
+iterations 	: 800
+alpha 	: 1e-05
+------------------------------------------ 
+Numero de topicos 	: 5
+chunksize 	: 40000
+passes 	: 20
+iterations 	: 800
+alpha 	: 1e-05
+Vectorizing 	: BOW
+------------------------------------------ 
+Numero de topicos 	: 5
+chunksize 	: 40000
+passes 	: 20
+iterations 	: 800
+alpha 	: 1e-05
+Vectorizing 	: BOW
+------------------------------------------ 
+Numero de topicos 	: 5
+chunksize 	: 40000
+passes 	: 20
+iterations 	: 800
+alpha 	: 1e-05
+Vectorizing 	: BOW
+------------------------------------------ 

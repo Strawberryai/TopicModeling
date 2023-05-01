@@ -1,0 +1,124 @@
+
+Numero de topicos 	: 5
+chunksize 	: 40000
+passes 	: 20
+iterations 	: 800
+alpha 	: 1e-05
+
+topic coherence 	: -6.073260043624717
+
+-3.9153375563567443
+ Palabras del topic: 
+Palabra plane 	 %0.034283098
+Palabra gate 	 %0.03112002
+Palabra delayed 	 %0.02853392
+Palabra hour 	 %0.019435948
+Palabra minutes 	 %0.018984213
+Palabra flight 	 %0.018402515
+Palabra waiting 	 %0.016616507
+Palabra hours 	 %0.0153829185
+Palabra delay 	 %0.014385157
+Palabra late 	 %0.011893121
+Palabra sitting 	 %0.011772071
+Palabra wait 	 %0.010881405
+Palabra due 	 %0.009351962
+Palabra crew 	 %0.009193329
+Palabra miss 	 %0.008566294
+Palabra connection 	 %0.00797943
+Palabra agent 	 %0.007784992
+Palabra time 	 %0.0075930706
+Palabra issues 	 %0.0074520092
+Palabra board 	 %0.0070511852
+
+-4.29042387774433
+ Palabras del topic: 
+Palabra call 	 %0.025150405
+Palabra hours 	 %0.024079407
+Palabra phone 	 %0.021298964
+Palabra number 	 %0.015559475
+Palabra late 	 %0.014516585
+Palabra back 	 %0.01390101
+Palabra airport 	 %0.013093502
+Palabra today 	 %0.012652253
+Palabra help 	 %0.012075812
+Palabra service 	 %0.010714812
+Palabra days 	 %0.00962369
+Palabra email 	 %0.009399629
+Palabra me 	 %0.00883396
+Palabra flightr 	 %0.008781637
+Palabra flightled 	 %0.008726641
+Palabra luggage 	 %0.008591259
+Palabra bag 	 %0.008049611
+Palabra line 	 %0.007964329
+Palabra person 	 %0.007961069
+Palabra made 	 %0.007551046
+
+-4.998704643883512
+ Palabras del topic: 
+Palabra bag 	 %0.027360601
+Palabra you 	 %0.023929773
+Palabra fly 	 %0.018092925
+Palabra flying 	 %0.017966092
+Palabra airline 	 %0.01781376
+Palabra guys 	 %0.017618733
+Palabra great 	 %0.017033251
+Palabra worst 	 %0.013301503
+Palabra today 	 %0.010368207
+Palabra experience 	 %0.009921497
+Palabra home 	 %0.009526954
+Palabra lost 	 %0.009350123
+Palabra it 	 %0.009302403
+Palabra make 	 %0.008999439
+Palabra again 	 %0.008809298
+Palabra jfk 	 %0.0087335715
+Palabra bags 	 %0.008725552
+Palabra wifi 	 %0.008509036
+Palabra day 	 %0.008439223
+Palabra luggage 	 %0.008017201
+
+-6.3576784447394425
+ Palabras del topic: 
+Palabra thanks 	 %0.018276889
+Palabra seat 	 %0.017416153
+Palabra dm 	 %0.0150175365
+Palabra ticket 	 %0.0140692415
+Palabra change 	 %0.012946714
+Palabra flight 	 %0.012843025
+Palabra flightled 	 %0.012149219
+Palabra miles 	 %0.01129636
+Palabra trip 	 %0.010648723
+Palabra seats 	 %0.010472508
+Palabra book 	 %0.010415351
+Palabra booked 	 %0.010356979
+Palabra tomorrow 	 %0.008642413
+Palabra that 	 %0.008558589
+Palabra travel 	 %0.008456851
+Palabra help 	 %0.007902972
+Palabra response 	 %0.0077074617
+Palabra follow 	 %0.007339443
+Palabra credit 	 %0.0072226734
+Palabra back 	 %0.0070555652
+
+-10.804155695399553
+ Palabras del topic: 
+Palabra co 	 %0.15153576
+Palabra http 	 %0.1437333
+Palabra fleek 	 %0.021207562
+Palabra fleet 	 %0.021207195
+Palabra problems 	 %0.019760117
+Palabra booking 	 %0.017037325
+Palabra love 	 %0.0134711955
+Palabra rt 	 %0.011847245
+Palabra make 	 %0.009458781
+Palabra tickets 	 %0.009356462
+Palabra app 	 %0.008736947
+Palabra face_with_tears_of_joy 	 %0.008290688
+Palabra destinationdragons 	 %0.007685226
+Palabra https 	 %0.007410924
+Palabra ceo 	 %0.0068505867
+Palabra show 	 %0.0065263156
+Palabra year 	 %0.0064743515
+Palabra travel 	 %0.0064422702
+Palabra flight 	 %0.0063643944
+Palabra great 	 %0.0062171374
+

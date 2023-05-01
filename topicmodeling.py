@@ -11,6 +11,7 @@ import pandas as pd
 import numpy as np
 
 import nltk
+nltk.download('stopwords')
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from nltk.tokenize import RegexpTokenizer
@@ -232,11 +233,11 @@ def guardar_resultadosLDA(configuracion, resultado, topic_coherence):
     iterations = configuracion['iterations']
     alpha = configuracion['alpha']
 
-    filename = "results/t_"+str(num_topics)+"_ch_"+str(chunksize)+"_p_"+str(passes)+"_it_"+str(iterations)+"_a_"+str(alpha)+".txt"
+    filename = "results/t_"+str(num_topics)+"_ch_"+str(chunksize)+"_p_"+str(passes)+"_it_"+str(iterations)+"_a_"+str(alpha)+"_"+VECTORIZING+".txt"
     with open(filename, "w") as file:
 
         # Escribir los resultados en el archivo de texto
-        file.write(f"Numero de topicos \t: {num_topics}\n")
+        file.write(f"\nNumero de topicos \t: {num_topics}\n")
         file.write(f"chunksize \t: {chunksize}\n")
         file.write(f"passes \t: {passes}\n")
         file.write(f"iterations \t: {iterations}\n")
@@ -262,6 +263,7 @@ def guardar_resultadosLDA(configuracion, resultado, topic_coherence):
         archivo.write(f"passes \t: {passes}\n")
         archivo.write(f"iterations \t: {iterations}\n")
         archivo.write(f"alpha \t: {alpha}\n")
+        archivo.write("Vectorizing \t: "+VECTORIZING+"\n")
         archivo.write("------------------------------------------ \n")
         
 
@@ -570,17 +572,19 @@ def main():
     else:
         ml_dataset['wo_stopfreq_lem'] = ml_dataset['wo_stopfreq']
 
+    #TODO AÑADIR LO DE LOS N-GRAMAS ?
+
     # Para ver el preprocesado de texto
     if DEBUG:
         ml_dataset.to_csv(DEBUG_FILE, index = True)
 
     # Crear Bag Of Words or TFIDF
-    token = RegexpTokenizer(r'[a-zA-Z0-9]+')
-    cv = CountVectorizer(stop_words='english', ngram_range = (1,1), tokenizer = token.tokenize)
+    #token = RegexpTokenizer(r'[a-zA-Z0-9]+')
+    #cv = CountVectorizer(stop_words='english', ngram_range = (1,1), tokenizer = token.tokenize)
     #tf = TfidfVectorizer(min_df=7, max_df=0.5, ngram_range=(1, 2), stop_words=stopwords.words('english'))
     tf = TfidfVectorizer(stop_words=stopwords.words('english'))
 
-    bow     = cv.fit_transform(ml_dataset['wo_stopfreq_lem'])
+    #bow     = cv.fit_transform(ml_dataset['wo_stopfreq_lem'])
     tfidf   = tf.fit_transform(ml_dataset['wo_stopfreq_lem'])
 
     # Escalamos el texto -> NO CONSEGUIMOS MEJORES RESULTADOS
@@ -590,9 +594,46 @@ def main():
 
     # Creamos el dataframe después de aplicar todos los preprocesos necesarios
     if VECTORIZING == "BOW":
-        dataframe = pd.DataFrame(bow.toarray())
+        # Tokenize the documents.
+        from nltk.tokenize import RegexpTokenizer
+
+        # Split the documents into tokens.
+        tokenizer = RegexpTokenizer(r'\w+')
+        for idx in range(len(ml_dataset['wo_stopfreq_lem'])):
+            ml_dataset['wo_stopfreq_lem'][idx] = ml_dataset['wo_stopfreq_lem'][idx].lower()  # Convert to lowercase.
+            ml_dataset['wo_stopfreq_lem'][idx] = tokenizer.tokenize(ml_dataset['wo_stopfreq_lem'][idx])  # Split into words.
+
+        # Remove numbers, but not words that contain numbers.
+        ml_dataset['wo_stopfreq_lem'] = [[token for token in doc if not token.isnumeric()] for doc in ml_dataset['wo_stopfreq_lem']]
+
+        # Remove words that are only one character.
+        ml_dataset['wo_stopfreq_lem'] = [[token for token in doc if len(token) > 1] for doc in ml_dataset['wo_stopfreq_lem']]
+
+        #dataframe = pd.DataFrame(bow.toarray())
+        #Remove rare and common tokens.
+        from gensim.corpora import Dictionary
+
+        # Create a dictionary representation of the documents.
+        dictionary = Dictionary(ml_dataset['wo_stopfreq_lem'])
+
+        # Filter out words that occur less than 20 documents, or more than 50% of the documents.
+        dictionary.filter_extremes(no_below=20, no_above=0.80)
+
+        # Bag-of-words representation of the documents.
+        corpus = [dictionary.doc2bow(doc) for doc in ml_dataset['wo_stopfreq_lem']]
+        # Make an index to word dictionary.
+        temp = dictionary[0]  # This is only to "load" the dictionary.
+        id2word = dictionary.id2token
+
+
     elif VECTORIZING == "TFIDF":
+        print("Haciendo TF-IDF")
         dataframe = pd.DataFrame(tfidf.toarray()) #Si se escala hay que quitar el .toarray()
+        corpus = Sparse2Corpus(tfidf)
+    
+        vocabulary_dict = tf.vocabulary_
+        aux = {index:word for word,index in vocabulary_dict.items()}
+        id2word = {index:word for index, word in aux.items()}
 
     # Añadimos los atributos seleccionados al dataset
     #dataframe['__target__'] = ml_dataset['__target__']
@@ -607,6 +648,7 @@ def main():
     #devY = np.array(dev['__target__'])
 
     # Undersampling
+    '''
     if SAMPLING == "UNDERSAMPLING":
         undersample = RandomUnderSampler(sampling_strategy="not minority", random_state=RANDOM_STATE)   # Balancea todas las clases menos la minoritaria
         trainX,trainY = undersample.fit_resample(trainX,trainY)
@@ -615,27 +657,24 @@ def main():
         oversample = RandomOverSampler(sampling_strategy='not majority', random_state=RANDOM_STATE)    # Balancea todas las clases menos la mayoritaria
         trainX,trainY = oversample.fit_resample(trainX,trainY)
         devX,devY = oversample.fit_resample(devX, devY)
+    '''
 
     # Entrenando modelos
     print("-- TRAINING MODELS")
-    # TODO: Completar con topic modeling
+    
 
     ## gensim LDA model
 
     #parametros para el training
     # Set training parameters.
-    num_topics = 10
-    chunksize = 10000
+    num_topics = 5
+    chunksize = 40000
     passes = 20
-    iterations = 400
+    iterations = 800
     eval_every = None  # Don't evaluate model perplexity, takes too much time.
-    alpha='auto'
+    alpha=0.00001
 
-    corpus = Sparse2Corpus(tfidf)
     
-    vocabulary_dict = tf.vocabulary_
-    aux = {index:word for word,index in vocabulary_dict.items()}
-    id2word = {index:word for index, word in aux.items()}
 
 
     model = LdaModel(
