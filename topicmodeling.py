@@ -20,6 +20,9 @@ from collections import Counter
 
 import pickle
 
+from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
+from sklearn.decomposition import LatentDirichletAllocation
+import numpy as np
 from sklearn.metrics                    import classification_report
 from sklearn.preprocessing              import MinMaxScaler
 from sklearn.model_selection            import train_test_split
@@ -288,6 +291,7 @@ def cleaning(text):
     text = text.replace(' rofl ', " laughing ")
     text = text.replace(' brb ', " be right back ")
     text = text.replace(' lol ', ' laughing ')
+    text = text.replace(' omg ', ' my god ')
     text = text.replace(' rofl ', ' laughing ')
     text = text.replace(' brb ', ' be right back ')
     text = text.replace(' ily ', ' i love you ')
@@ -403,12 +407,15 @@ def cleaning(text):
 
     text = text.lower()  # converting to lowercase
     text = text.replace('https?://\S+|www\.\S+', '')  # removing URL links
+    text = text.replace('http?://\S+|www\.\S+', '')  # removing URL links
     text = text.replace(r"\b\d+\b", "")  # removing number
     text = text.replace('<.*?>+', '')  # removing special characters,
     text = text.replace('[%s]' % re.escape(string.punctuation), '')  # punctuations
     text = text.replace('\n', '')
     text = text.replace('[’“”…]', '')
     text = text.replace('  ', ' ')
+    text = text.replace(':', '')
+    text = text.replace('_', ' ')
 
     # emojis de texto
     text = text.replace(" :D ", ' smile ')
@@ -552,7 +559,35 @@ def main():
 
     #bow     = cv.fit_transform(ml_dataset['wo_stopfreq_lem'])
     tfidf   = cv.fit_transform(ml_dataset['wo_stopfreq_lem'])
+    tf_feature_names =cv.get_feature_names_out
     tf_nombre_atributos=list(cv.vocabulary_.keys())
+    tf_feature_names = tf_nombre_atributos
+    def display_topics(H, W, feature_names, documents, no_top_words, no_top_documents):
+        for topic_idx, topic in enumerate(H):
+            print("Topic %d:" % (topic_idx))
+            print(''.join((' ' +feature_names[i] + ' ' + str(round(topic[i], 5)) #y esto también
+                    for i in topic.argsort()[:-no_top_words - 1:-1])))
+            top_doc_indices = np.argsort( W[:,topic_idx] )[::-1][0:no_top_documents]
+            docProbArray=np.argsort(W[:,topic_idx])
+            print(docProbArray)
+            howMany=len(docProbArray)
+            print("How Many")
+            print(howMany)
+            for doc_index in top_doc_indices:
+                print(documents[doc_index])
+    # Crear Bag Of Words or TFIDF
+    no_topics = 5 #@param {type:"integer"}
+
+    no_top_words = 30 #@param {type:"integer"}
+
+    no_top_documents = 10 #@param {type:"integer"}
+
+    lda_model = LatentDirichletAllocation(n_components=5, max_iter=100, learning_method='online', learning_offset=50,random_state=0).fit(tfidf)
+    lda_W = lda_model.transform(tfidf)
+
+    lda_H=lda_model.components_ /lda_model.components_.sum(axis=1)[:, np.newaxis] 
+    print("LDA Topics")
+    display_topics(lda_H, lda_W, tf_feature_names, ml_dataset['wo_stopfreq_lem'], no_top_words, no_top_documents)
 
     # Escalamos el texto -> NO CONSEGUIMOS MEJORES RESULTADOS
     # print("-- ESCALADO DE TEXTO")

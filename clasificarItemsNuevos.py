@@ -447,12 +447,17 @@ def main():
     token = RegexpTokenizer(r'[a-zA-Z0-9]+')
     cv = CountVectorizer(stop_words='english', ngram_range = (1,1), tokenizer = token.tokenize)
     tf = TfidfVectorizer(min_df=7, max_df=0.5, ngram_range=(1, 2), stop_words=stopwords.words('english'))
+    lda = LatentDirichletAllocation(n_components = 10000, max_iter=5, learning_method='online',learning_offset=50., random_state=0)
 
-    bow     = cv.fit_transform(train_dataset['wo_stopfreq_lem'])
+    lda.fit(tf)
+
+# making LDA TOP MATRIX USING CORPUS TF
+    lda_topic_modelling = lda.fit_transform(tf)
+    '''bow     = cv.fit_transform(train_dataset['wo_stopfreq_lem'])
     tfidf   = tf.fit_transform(train_dataset['wo_stopfreq_lem'])
     
     bow = cv.transform(test_dataset['wo_stopfreq_lem'])
-    tfidf = tf.transform(test_dataset['wo_stopfreq_lem'])
+    tfidf = tf.transform(test_dataset['wo_stopfreq_lem'])'''
 
     # Escalamos el texto -> NO CONSEGUIMOS MEJORES RESULTADOS
     # print("-- ESCALADO DE TEXTO")
