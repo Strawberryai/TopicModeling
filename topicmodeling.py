@@ -543,6 +543,8 @@ def main():
         ml_dataset["wo_stopfreq"] = ml_dataset["no_sw"].apply(lambda text: remove_freqwords(text, freq_words)) # Eliminamos las más frecuentes
     else: 
         ml_dataset["wo_stopfreq"] = ml_dataset["no_sw"]
+
+
     token = RegexpTokenizer(r'[a-zA-Z0-9]+')
     cv = CountVectorizer(max_df=0.95,min_df=2,stop_words='english', ngram_range = (1,1), tokenizer = token.tokenize)
     # Stemming da mejores resultados. Dejamos Lematización comentado
@@ -566,9 +568,18 @@ def main():
         ml_dataset.to_csv(DEBUG_FILE, index = True)
 
     # Crear Bag Of Words or TFIDF
-   
-    tf = TfidfVectorizer(min_df=7, max_df=0.5, ngram_range=(1, 2), stop_words=stopwords.words('english'))
+    ## Negative
+    doc_neg=ml_dataset[ml_dataset['__target__']==0]
+    doc_neg_delta=doc_neg[doc_neg['airline'].str.contains('Delta',na=False)]
+    doc_neg_USAirways=doc_neg[doc_neg['airline'].str.contains('US Airways',na=False)]
+    ## Positive
+    doc_pos=ml_dataset[ml_dataset['__target__']==2]
+    doc_pos_delta=doc_pos[doc_pos['airline'].str.contains('Delta',na=False)]
+    doc_pos_USAirways=doc_pos[doc_pos['airline'].str.contains('US Airways',na=False)]
 
+
+    tf = TfidfVectorizer(min_df=7, max_df=0.5, ngram_range=(1, 2), stop_words=stopwords.words('english'))
+    
     #bow     = cv.fit_transform(ml_dataset['wo_stopfreq_lem'])
     tfidf   = cv.fit_transform(ml_dataset['wo_stopfreq_lem'])
     tf_feature_names =cv.get_feature_names_out
