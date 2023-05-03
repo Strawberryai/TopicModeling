@@ -42,6 +42,7 @@ TARGET_NAME     = "airline_sentiment"               # Nombre de la columna a cla
 ATRIBUTOS       = ['text', 'airline_sentiment']     # Atributos que seleccionamos del dataset | TODOS o lista
 DEV_SIZE        = 0.2                               # Indice del tamaño del dev. Por defecto un 20% de la muestra
 RANDOM_STATE    = 42                                # Seed del random split
+MESSAGE         = ""                                # Test message
 
 DEBUG           = True                              # Flag para mostrar el archivo de debug con el dataset preprocesado
 DEBUG_FILE      = "debug.csv"                       # Archivo que muestra el dataframe preprocesado
@@ -74,6 +75,7 @@ def usage():
     print(f"-t, --target        target name to predict                          DEFAULT: {TARGET_NAME}")
     print(f"-d, --debug         debug preprocess                                DEFAULT: {DEBUG}")
     print(f"-g, --debugfile     debug file                                      DEFAULT: ./{DEBUG_FILE}")
+    print(f"-m, --message       test message                                    DEFAULT: {MESSAGE}")
     print("Text preprocessing:")
     print(f"-w                  tweet atribute                                  DEFAULT: {TWEET_ATRIB}")
     print(f"-e                  emoji to text                                   DEFAULT: {DEMOJI}")
@@ -96,7 +98,7 @@ def usage():
 def load_options(options):
     # PRE: argumentos especificados por el usuario
     # POST: registramos la configuración del usuario en las variables globales
-    global INPUT_FILE, OUTPUT_PATH, TARGET_NAME, DEBUG, DEBUG_FILE, TWEET_ATRIB, DEMOJI, CLEANING, STOP_WORDS, FREQ_WORDS, LEMATIZE, VECTORIZING, SAMPLING
+    global INPUT_FILE, OUTPUT_PATH, TARGET_NAME, DEBUG, DEBUG_FILE, TWEET_ATRIB, DEMOJI, CLEANING, STOP_WORDS, FREQ_WORDS, LEMATIZE, VECTORIZING, SAMPLING, MESSAGE
 
     for opt,arg in options:
         if opt in ('-h', '--help'):
@@ -111,6 +113,8 @@ def load_options(options):
             DEBUG = bool(arg)
         elif opt in ('-g', '--debugfile'):
             DEBUG_FILE = str(arg)
+        elif opt in ('-m', '--message'):
+            MESSAGE = str(arg)
 
         elif opt == '-w':
             TWEET_ATRIB = str(arg)
@@ -242,6 +246,7 @@ def guardar_resultadosLDA(configuracion, resultado, topic_coherence):
         file.write(f"passes \t: {passes}\n")
         file.write(f"iterations \t: {iterations}\n")
         file.write(f"alpha \t: {alpha}\n")
+        file.write(MESSAGE)
         file.write("\n")
         file.write(f"topic coherence \t: {topic_coherence}\n")
         file.write("\n")
@@ -710,7 +715,7 @@ if __name__ == "__main__":
     try:
         # options: registra los argumentos del usuario
         # remainder: registra los campos adicionales introducidos -> entrenar_knn.py esto_es_remainder
-        options, remainder = getopt(argv[1:], 'hi:o:t:d:g:w:e:c:s:f:l:v:u:', ['help', 'input', 'output', 'target', 'debug', 'debugfile'])
+        options, remainder = getopt(argv[1:], 'hi:o:t:d:g:w:e:c:s:f:l:v:u:m:', ['help', 'input', 'output', 'target', 'debug', 'debugfile', 'message'])
         
     except getopt.GetoptError as err:
         # Error al parsear las opciones del comando
