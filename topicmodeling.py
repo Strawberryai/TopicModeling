@@ -36,29 +36,30 @@ from gensim.models import LdaModel
 from gensim.matutils import Sparse2Corpus
 
 # Variables globales
-INPUT_FILE      = "./data/TweetsTrainDev.csv"              # Path del archivo de entrada
-OUTPUT_PATH     = "./models"                        # Path de los archivos de salida
-TARGET_NAME     = "airline_sentiment"               # Nombre de la columna a clasificar
-ATRIBUTOS       = ['text', 'airline_sentiment']     # Atributos que seleccionamos del dataset | TODOS o lista
-DEV_SIZE        = 0.2                               # Indice del tamaño del dev. Por defecto un 20% de la muestra
-RANDOM_STATE    = 42                                # Seed del random split
-MESSAGE         = ""                                # Test message
-AIRLINE         = "Delta"                           # Aerolinea a filtrar
-SENTIMENT       = "positive"                        # Sentimiento a filtrar
+INPUT_FILE      = "./data/TweetsTrainDev.csv"               # Path del archivo de entrada
+OUTPUT_PATH     = "./models"                                # Path de los archivos de salida
+TARGET_NAME     = "airline_sentiment"                       # Nombre de la columna a clasificar
+ATRIBUTOS       = ['text', 'airline_sentiment', 'airline']  # Atributos que seleccionamos del dataset | TODOS o lista
+DEV_SIZE        = 0.2                                       # Indice del tamaño del dev. Por defecto un 20% de la muestra
+RANDOM_STATE    = 42                                        # Seed del random split
+MESSAGE         = ""                                        # Test message
+AIRLINE         = "Delta"                                   # Aerolinea a filtrar
+SENTIMIENTO       = "holad"                                # Sentimiento a filtrar
+SENTIMIENTO     = "buenas"
 
-DEBUG           = True                              # Flag para mostrar el archivo de debug con el dataset preprocesado
-DEBUG_FILE      = "debug.csv"                       # Archivo que muestra el dataframe preprocesado
+DEBUG           = True                                      # Flag para mostrar el archivo de debug con el dataset preprocesado
+DEBUG_FILE      = "debug.csv"                               # Archivo que muestra el dataframe preprocesado
 
-TWEET_ATRIB     = "text"                            # Atributo de entrada de tweets
+TWEET_ATRIB     = "text"                                    # Atributo de entrada de tweets
 
-DEMOJI          = True                              # Tener en cuenta los emojis transformándolos en texto
-CLEANING        = True                              # Limpiar textos: carácteres especiales, abrebiaturas, signos de puntuación...
-STOP_WORDS      = False                             # Tratar las stop words
-FREQ_WORDS      = True                              # Borramos las palabras más frecuentes. Pueden no aportar demasiada información.
-LEMATIZE        = True                              # Lematizamos el texto (realmente hacemos Stemming)
-VECTORIZING     = "TFIDF"                           # Sistema de vectorización: BOW | TFIDF
+DEMOJI          = True                                      # Tener en cuenta los emojis transformándolos en texto
+CLEANING        = True                                      # Limpiar textos: carácteres especiales, abrebiaturas, signos de puntuación...
+STOP_WORDS      = False                                     # Tratar las stop words
+FREQ_WORDS      = True                                      # Borramos las palabras más frecuentes. Pueden no aportar demasiada información.
+LEMATIZE        = True                                      # Lematizamos el texto (realmente hacemos Stemming)
+VECTORIZING     = "TFIDF"                                   # Sistema de vectorización: BOW | TFIDF
 
-SAMPLING        =  "NONE "                          # Método de muestreo de nuestro dataset: OVERSAMPLING \ UNDERSAMPLING | NONE
+SAMPLING        =  "NONE "                                  # Método de muestreo de nuestro dataset: OVERSAMPLING \ UNDERSAMPLING | NONE
 
 # Downloads necesarios
 stop_words = stopwords.words()
@@ -79,7 +80,7 @@ def usage():
     print(f"-g, --debugfile     debug file                                      DEFAULT: ./{DEBUG_FILE}")
     print(f"-m, --message       test message                                    DEFAULT: {MESSAGE}")
     print(f"--airline           airline filter                                  DEFAULT: {AIRLINE}")
-    print(f"--sentiment         sentiment filter                                DEFAULT: {SENTIMENT}")
+    print(f"--sentiment         sentiment filter                                DEFAULT: {SENTIMIENTO}")
     print("Text preprocessing:")
     print(f"-w                  tweet atribute                                  DEFAULT: {TWEET_ATRIB}")
     print(f"-e                  emoji to text                                   DEFAULT: {DEMOJI}")
@@ -102,7 +103,7 @@ def usage():
 def load_options(options):
     # PRE: argumentos especificados por el usuario
     # POST: registramos la configuración del usuario en las variables globales
-    global INPUT_FILE, OUTPUT_PATH, TARGET_NAME, DEBUG, DEBUG_FILE, TWEET_ATRIB, DEMOJI, CLEANING, STOP_WORDS, FREQ_WORDS, LEMATIZE, VECTORIZING, SAMPLING, MESSAGE, AIRLINE, SENTIMENT
+    global INPUT_FILE, OUTPUT_PATH, TARGET_NAME, DEBUG, DEBUG_FILE, TWEET_ATRIB, DEMOJI, CLEANING, STOP_WORDS, FREQ_WORDS, LEMATIZE, VECTORIZING, SAMPLING, MESSAGE, AIRLINE, SENTIMIENTO
 
     for opt,arg in options:
         if opt in ('-h', '--help'):
@@ -121,8 +122,8 @@ def load_options(options):
             MESSAGE = str(arg)
         elif opt in ('--airline'):
             AIRLINE = str(arg)
-        elif opt in ('--sentimet'):
-            SENTIMENT = str(arg)
+        elif opt in ('--sentimiento'):
+            SENTIMIENTO = str(arg)
 
         elif opt == '-w':
             TWEET_ATRIB = str(arg)
@@ -158,6 +159,9 @@ def show_script_options():
     print(f"                    ramdom state seed           -> {RANDOM_STATE}")
     print(f"-d                  debug preprocess            -> {DEBUG}")
     print(f"-g                  debug file                  -> {DEBUG_FILE}")
+    print(f"-m, --message       test message                -> {MESSAGE}")
+    print(f"--airline           airline filter              -> {AIRLINE}")
+    print(f"--sentiment         sentiment filter            -> {SENTIMIENTO}")
     print("Text preprocessing:")
     print(f"-w                  tweet atribute              -> {TWEET_ATRIB}")
     print(f"-e                  emoji to text               -> {DEMOJI}")
@@ -255,7 +259,7 @@ def guardar_resultadosLDA(configuracion, resultado, topic_coherence):
         file.write(f"iterations \t: {iterations}\n")
         file.write(f"alpha \t: {alpha}\n")
         file.write(f"airline \t: {AIRLINE}\n")
-        file.write(f"sentiment \t: {SENTIMENT}\n")
+        file.write(f"sentiment \t: {SENTIMIENTO}\n")
         file.write(f"menssage \t: {MESSAGE}\n")
         file.write("\n")
         file.write(f"topic coherence \t: {topic_coherence}\n")
@@ -537,8 +541,10 @@ def main():
     ml_dataset = ml_dataset[atributos]
 
     # FILTRADO
-    ml_dataset = ml_dataset[ml_dataset['airline'] == "Delta"]
-    ml_dataset = ml_dataset[ml_dataset['airline_sentiment'] == "positive"]
+    print("--- FILTRADO")
+    ml_dataset = ml_dataset[ml_dataset['airline'] == AIRLINE]
+    ml_dataset = ml_dataset[ml_dataset['airline_sentiment'] == SENTIMIENTO]
+    ml_dataset = ml_dataset.drop('airline', axis=1)
     print(ml_dataset.head(5))
 
     categorical_features = []
@@ -619,9 +625,9 @@ def main():
 
         # Split the documents into tokens.
         tokenizer = RegexpTokenizer(r'\w+')
-        for idx in range(len(ml_dataset['wo_stopfreq_lem'])):
-            ml_dataset['wo_stopfreq_lem'][idx] = ml_dataset['wo_stopfreq_lem'][idx].lower()  # Convert to lowercase.
-            ml_dataset['wo_stopfreq_lem'][idx] = tokenizer.tokenize(ml_dataset['wo_stopfreq_lem'][idx])  # Split into words.
+        for row in ml_dataset.itertuples():
+            ml_dataset['wo_stopfreq_lem'][row.Index] = ml_dataset['wo_stopfreq_lem'][row.Index].lower()  # Convert to lowercase.
+            ml_dataset['wo_stopfreq_lem'][row.Index] = tokenizer.tokenize(ml_dataset['wo_stopfreq_lem'][row.Index])  # Split into words.
 
         # Remove numbers, but not words that contain numbers.
         ml_dataset['wo_stopfreq_lem'] = [[token for token in doc if not token.isnumeric()] for doc in ml_dataset['wo_stopfreq_lem']]
@@ -730,7 +736,7 @@ if __name__ == "__main__":
     try:
         # options: registra los argumentos del usuario
         # remainder: registra los campos adicionales introducidos -> entrenar_knn.py esto_es_remainder
-        options, remainder = getopt(argv[1:], 'hi:o:t:d:g:w:e:c:s:f:l:v:u:m:', ['help', 'input', 'output', 'target', 'debug', 'debugfile', 'message'])
+        options, remainder = getopt(argv[1:], 'hi:o:t:d:g:w:e:c:s:f:l:v:u:m:', ['help', 'input', 'output', 'target', 'debug', 'debugfile', 'message=', 'airline=', 'sentimiento='])
         
     except getopt.GetoptError as err:
         # Error al parsear las opciones del comando
