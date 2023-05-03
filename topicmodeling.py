@@ -563,11 +563,11 @@ def main():
 
     # Stemming da mejores resultados. Dejamos Lematización comentado
     if LEMATIZE:
-        #wordnet_lem = WordNetLemmatizer()
-        #ml_dataset['wo_stopfreq_lem'] = ml_dataset['wo_stopfreq'].apply(wordnet_lem.lemmatize) # Lematizamos las palabras
+        wordnet_lem = WordNetLemmatizer()
+        ml_dataset['wo_stopfreq_lem'] = ml_dataset['wo_stopfreq'].apply(wordnet_lem.lemmatize) # Lematizamos las palabras
         
-        porter = PorterStemmer()
-        ml_dataset["wo_stopfreq_lem"] = ml_dataset["wo_stopfreq"].apply(porter.stem)
+        #porter = PorterStemmer()
+        #ml_dataset["wo_stopfreq_lem"] = ml_dataset["wo_stopfreq"].apply(porter.stem)
 
     else:
         ml_dataset['wo_stopfreq_lem'] = ml_dataset['wo_stopfreq']
