@@ -43,6 +43,8 @@ ATRIBUTOS       = ['text', 'airline_sentiment']     # Atributos que seleccionamo
 DEV_SIZE        = 0.2                               # Indice del tamaño del dev. Por defecto un 20% de la muestra
 RANDOM_STATE    = 42                                # Seed del random split
 MESSAGE         = ""                                # Test message
+AIRLINE         = "Delta"                           # Aerolinea a filtrar
+SENTIMENT       = "positive"                        # Sentimiento a filtrar
 
 DEBUG           = True                              # Flag para mostrar el archivo de debug con el dataset preprocesado
 DEBUG_FILE      = "debug.csv"                       # Archivo que muestra el dataframe preprocesado
@@ -76,6 +78,8 @@ def usage():
     print(f"-d, --debug         debug preprocess                                DEFAULT: {DEBUG}")
     print(f"-g, --debugfile     debug file                                      DEFAULT: ./{DEBUG_FILE}")
     print(f"-m, --message       test message                                    DEFAULT: {MESSAGE}")
+    print(f"--airline           airline filter                                  DEFAULT: {AIRLINE}")
+    print(f"--sentiment         sentiment filter                                DEFAULT: {SENTIMENT}")
     print("Text preprocessing:")
     print(f"-w                  tweet atribute                                  DEFAULT: {TWEET_ATRIB}")
     print(f"-e                  emoji to text                                   DEFAULT: {DEMOJI}")
@@ -98,7 +102,7 @@ def usage():
 def load_options(options):
     # PRE: argumentos especificados por el usuario
     # POST: registramos la configuración del usuario en las variables globales
-    global INPUT_FILE, OUTPUT_PATH, TARGET_NAME, DEBUG, DEBUG_FILE, TWEET_ATRIB, DEMOJI, CLEANING, STOP_WORDS, FREQ_WORDS, LEMATIZE, VECTORIZING, SAMPLING, MESSAGE
+    global INPUT_FILE, OUTPUT_PATH, TARGET_NAME, DEBUG, DEBUG_FILE, TWEET_ATRIB, DEMOJI, CLEANING, STOP_WORDS, FREQ_WORDS, LEMATIZE, VECTORIZING, SAMPLING, MESSAGE, AIRLINE, SENTIMENT
 
     for opt,arg in options:
         if opt in ('-h', '--help'):
@@ -115,6 +119,10 @@ def load_options(options):
             DEBUG_FILE = str(arg)
         elif opt in ('-m', '--message'):
             MESSAGE = str(arg)
+        elif opt in ('--airline'):
+            AIRLINE = str(arg)
+        elif opt in ('--sentimet'):
+            SENTIMENT = str(arg)
 
         elif opt == '-w':
             TWEET_ATRIB = str(arg)
@@ -246,7 +254,9 @@ def guardar_resultadosLDA(configuracion, resultado, topic_coherence):
         file.write(f"passes \t: {passes}\n")
         file.write(f"iterations \t: {iterations}\n")
         file.write(f"alpha \t: {alpha}\n")
-        file.write(MESSAGE)
+        file.write(f"airline \t: {AIRLINE}\n")
+        file.write(f"sentiment \t: {SENTIMENT}\n")
+        file.write(f"menssage \t: {MESSAGE}\n")
         file.write("\n")
         file.write(f"topic coherence \t: {topic_coherence}\n")
         file.write("\n")
@@ -525,6 +535,11 @@ def main():
     else:
         atributos = ATRIBUTOS
     ml_dataset = ml_dataset[atributos]
+
+    # FILTRADO
+    ml_dataset = ml_dataset[ml_dataset['airline'] == "Delta"]
+    ml_dataset = ml_dataset[ml_dataset['airline_sentiment'] == "positive"]
+    print(ml_dataset.head(5))
 
     categorical_features = []
     text_features = [TWEET_ATRIB]
