@@ -407,7 +407,6 @@ def cleaning(text):
 
     text = text.lower()  # converting to lowercase
     text = text.replace('https?://\S+|www\.\S+', '')  # removing URL links
-    text = text.replace('http?://\S+|www\.\S+', '')  # removing URL links
     text = text.replace(r"\b\d+\b", "")  # removing number
     text = text.replace('<.*?>+', '')  # removing special characters,
     text = text.replace('[%s]' % re.escape(string.punctuation), '')  # punctuations
@@ -565,79 +564,113 @@ def main():
     def display_topics(H, W, feature_names, documents, no_top_words, no_top_documents):
         for topic_idx, topic in enumerate(H):
             print("Topic %d:" % (topic_idx))
-            print(''.join((' ' +feature_names[i] + ' ' + str(round(topic[i], 5)) #y esto también
+            text_file.write("Topic %d:" % (topic_idx))
+            text_file.write("\n")
+            topicsSTR=(''.join((' ' +feature_names[i] + ' ' + str(round(topic[i], 5)) #y esto también
                     for i in topic.argsort()[:-no_top_words - 1:-1])))
+            print(topicsSTR)
+            text_file.write(topicsSTR)
+            text_file.write("\n")
             top_doc_indices = np.argsort( W[:,topic_idx] )[::-1][0:no_top_documents]
             docProbArray=np.argsort(W[:,topic_idx])
             print(docProbArray)
+            text_file.write(str(docProbArray))
+            text_file.write("\n")
             howMany=len(docProbArray)
             print("How Many")
+            text_file.write("How Many")
+            text_file.write("\n")
             print(howMany)
+            text_file.write(str(howMany))
+            text_file.write("\n")
             for doc_index in top_doc_indices:
                 print(documents[doc_index])
+                text_file.write(str(documents[doc_index]))
+                text_file.write("\n")
     # Crear Bag Of Words or TFIDF
-    no_topics = 5 #@param {type:"integer"}
+    alfa_inic=0.05
+    beta_inic=0.05
+    alfa_max=0.5
+    beta_max=0.5
+    intervalo=0.05
+    alfa=alfa_inic
+    beta=beta_inic
+    text_file = open("barridoLDA.txt", "a")
+    text_file.write("Esta prueba barre alfa y beta desde "+str(alfa_inic)+" a "+str(alfa_max))
+    text_file.write("-----------------------------------------")
+    text_file.write("\n")
+    text_file.write("\n")
+    while alfa<alfa_max:
+        beta=beta_inic
+        while beta<beta_max:
+            text_file.write("alpha="+str(alfa)+"|beta="+str(beta))
+            text_file.write("\n")
+            no_topics = 5 #@param {type:"integer"}
 
-    no_top_words = 30 #@param {type:"integer"}
+            no_top_words = 30 #@param {type:"integer"}
 
-    no_top_documents = 10 #@param {type:"integer"}
+            no_top_documents = 10 #@param {type:"integer"}
 
-    lda_model = LatentDirichletAllocation(n_components=5, max_iter=100, learning_method='online', learning_offset=50,random_state=0).fit(tfidf)
-    lda_W = lda_model.transform(tfidf)
+            lda_model = LatentDirichletAllocation(n_components=5, max_iter=100, learning_method='online', learning_offset=50,random_state=0).fit(tfidf)
+            lda_W = lda_model.transform(tfidf)
 
-    lda_H=lda_model.components_ /lda_model.components_.sum(axis=1)[:, np.newaxis] 
-    print("LDA Topics")
-    display_topics(lda_H, lda_W, tf_feature_names, ml_dataset['wo_stopfreq_lem'], no_top_words, no_top_documents)
+            lda_H=lda_model.components_ /lda_model.components_.sum(axis=1)[:, np.newaxis] 
+            print("LDA Topics")
+            display_topics(lda_H, lda_W, tf_feature_names, ml_dataset['wo_stopfreq_lem'], no_top_words, no_top_documents)
 
-    # Escalamos el texto -> NO CONSEGUIMOS MEJORES RESULTADOS
-    # print("-- ESCALADO DE TEXTO")
-    # scaler = MinMaxScaler()
-    # tfidf = scaler.fit_transform(tfidf.toarray())
+            # Escalamos el texto -> NO CONSEGUIMOS MEJORES RESULTADOS
+            # print("-- ESCALADO DE TEXTO")
+            # scaler = MinMaxScaler()
+            # tfidf = scaler.fit_transform(tfidf.toarray())
 
-    # Creamos el dataframe después de aplicar todos los preprocesos necesarios
-    if VECTORIZING == "BOW":
-        dataframe = pd.DataFrame(bow.toarray())
-    elif VECTORIZING == "TFIDF":
-        dataframe = pd.DataFrame(tfidf.toarray()) #Si se escala hay que quitar el .toarray()
+            # Creamos el dataframe después de aplicar todos los preprocesos necesarios
+            if VECTORIZING == "BOW":
+                dataframe = pd.DataFrame(bow.toarray())
+            elif VECTORIZING == "TFIDF":
+                dataframe = pd.DataFrame(tfidf.toarray()) #Si se escala hay que quitar el .toarray()
 
-    
-    lda=True
-    if( not lda):
-        # Añadimos los atributos seleccionados al dataset
-        dataframe['__target__'] = ml_dataset['__target__']
+            
+            lda=True
+            if( not lda):
+                # Añadimos los atributos seleccionados al dataset
+                dataframe['__target__'] = ml_dataset['__target__']
 
-        # Division Train y Dev
-        print("-- TRAIN Y DEV SPLIT")
-        train, dev = train_test_split(dataframe,test_size=DEV_SIZE,random_state=RANDOM_STATE,stratify=dataframe[['__target__']])
+                # Division Train y Dev
+                print("-- TRAIN Y DEV SPLIT")
+                train, dev = train_test_split(dataframe,test_size=DEV_SIZE,random_state=RANDOM_STATE,stratify=dataframe[['__target__']])
 
-        trainX = train.drop('__target__', axis=1)
-        trainY = np.array(train['__target__'])
-        devX = dev.drop('__target__', axis=1)
-        devY = np.array(dev['__target__'])
+                trainX = train.drop('__target__', axis=1)
+                trainY = np.array(train['__target__'])
+                devX = dev.drop('__target__', axis=1)
+                devY = np.array(dev['__target__'])
 
-        # Undersampling
-        if SAMPLING == "UNDERSAMPLING":
-            undersample = RandomUnderSampler(sampling_strategy="not minority", random_state=RANDOM_STATE)   # Balancea todas las clases menos la minoritaria
-            trainX,trainY = undersample.fit_resample(trainX,trainY)
-            devX,devY = undersample.fit_resample(devX, devY)
-        elif SAMPLING == "OVERSAMPLING":
-            oversample = RandomOverSampler(sampling_strategy='not majority', random_state=RANDOM_STATE)    # Balancea todas las clases menos la mayoritaria
-            trainX,trainY = oversample.fit_resample(trainX,trainY)
-            devX,devY = oversample.fit_resample(devX, devY)
+                # Undersampling
+                if SAMPLING == "UNDERSAMPLING":
+                    undersample = RandomUnderSampler(sampling_strategy="not minority", random_state=RANDOM_STATE)   # Balancea todas las clases menos la minoritaria
+                    trainX,trainY = undersample.fit_resample(trainX,trainY)
+                    devX,devY = undersample.fit_resample(devX, devY)
+                elif SAMPLING == "OVERSAMPLING":
+                    oversample = RandomOverSampler(sampling_strategy='not majority', random_state=RANDOM_STATE)    # Balancea todas las clases menos la mayoritaria
+                    trainX,trainY = oversample.fit_resample(trainX,trainY)
+                    devX,devY = oversample.fit_resample(devX, devY)
 
-            # Entrenando modelos
-        print("-- TRAINING MODELS")
-        # TODO: Completar con topic modeling
-    else:
-        no_topics=5
-        no_top_words=30
-        no_top_documents=10
-        lda_model = LatentDirichletAllocation(n_components=no_topics, max_iter=100, learning_method='online', learning_offset=50.,random_state=0).fit(tfidf)
-        lda_W = lda_model.transform(tfidf)
+                    # Entrenando modelos
+                print("-- TRAINING MODELS")
+                # TODO: Completar con topic modeling
+            else:
+                no_topics=5
+                no_top_words=30
+                no_top_documents=10
+                lda_model = LatentDirichletAllocation(n_components=no_topics, max_iter=100, learning_method='online', learning_offset=50.,random_state=0).fit(tfidf)
+                lda_W = lda_model.transform(tfidf)
 
-        lda_H=lda_model.components_ /lda_model.components_.sum(axis=1)[:, np.newaxis] 
-        print("LDA Topics")
-        display_topics(lda_H, lda_W, tf_nombre_atributos, ml_dataset['wo_stopfreq_lem'], no_top_words, no_top_documents)
+                lda_H=lda_model.components_ /lda_model.components_.sum(axis=1)[:, np.newaxis] 
+                print("LDA Topics")
+                display_topics(lda_H, lda_W, tf_nombre_atributos, ml_dataset['wo_stopfreq_lem'], no_top_words, no_top_documents)
+                beta=beta+intervalo
+                text_file.write("-----------------------------------------")
+                text_file.write("\n")
+            alfa=alfa+intervalo
 
 if __name__ == "__main__":
     try:
