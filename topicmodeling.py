@@ -12,6 +12,7 @@ import sys
 import plotly.express as px
 import warnings
 import nltk
+nltk.download('averaged_perceptron_tagger')
 from nltk.corpus import stopwords
 from getopt import getopt
 from sys import exit, argv, version_info
@@ -569,12 +570,12 @@ def main():
     # Crear Bag Of Words or TFIDF
     ## Negative
     doc_neg=ml_dataset[ml_dataset['__target__']==0]
-    doc_neg_delta=doc_neg[doc_neg['airline'].str.contains('Delta',na=False)]
-    doc_neg_USAirways=doc_neg[doc_neg['airline'].str.contains('US Airways',na=False)]
+    #doc_neg_delta=doc_neg[doc_neg['airline'].str.contains('Delta',na=False)]
+    #doc_neg_USAirways=doc_neg[doc_neg['airline'].str.contains('US Airways',na=False)]
     ## Positive
     doc_pos=ml_dataset[ml_dataset['__target__']==2]
-    doc_pos_delta=doc_pos[doc_pos['airline'].str.contains('Delta',na=False)]
-    doc_pos_USAirways=doc_pos[doc_pos['airline'].str.contains('US Airways',na=False)]
+    #doc_pos_delta=doc_pos[doc_pos['airline'].str.contains('Delta',na=False)]
+    #doc_pos_USAirways=doc_pos[doc_pos['airline'].str.contains('US Airways',na=False)]
 
 
     tf = TfidfVectorizer(min_df=7, max_df=0.5, ngram_range=(1, 2), stop_words=stopwords.words('english'))
@@ -613,8 +614,8 @@ def main():
     # Crear Bag Of Words or TFIDF
     alfa_inic=0.05
     beta_inic=0.05
-    alfa_max=0.5
-    beta_max=0.5
+    alfa_max=0.25
+    beta_max=0.25
     intervalo=0.05
     alfa=alfa_inic
     beta=beta_inic
