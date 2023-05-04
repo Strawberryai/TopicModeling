@@ -17,8 +17,11 @@ from getopt import getopt
 from sys import exit, argv, version_info
 import emoji
 from collections import Counter
+from nltk.stem import WordNetLemmatizer
+from nltk import word_tokenize,pos_tag
 
 import pickle
+nltk.download('averaged_perceptron_tagger')
 
 from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
 from sklearn.decomposition import LatentDirichletAllocation
@@ -479,7 +482,11 @@ def get_freqwords(text_col):
             cnt[word] += 1
     cnt.most_common(10)
     return set([w for (w, wc) in cnt.most_common(10)])
-
+def unir_string(text):
+    stringNUevo=""
+    for x in text:
+        stringNUevo=stringNUevo+" "+x
+    return(stringNUevo)
 #######################################################################################
 #                                    MAIN PROGRAM                                     #
 #######################################################################################
@@ -536,26 +543,42 @@ def main():
     else: 
         ml_dataset["wo_stopfreq"] = ml_dataset["no_sw"]
 
+
+    token = RegexpTokenizer(r'[a-zA-Z0-9]+')
+    cv = CountVectorizer(max_df=0.95,min_df=2,stop_words='english', ngram_range = (1,1), tokenizer = token.tokenize)
     # Stemming da mejores resultados. Dejamos Lematización comentado
-    #if LEMATIZE:
-        #wordnet_lem = WordNetLemmatizer()
-        #ml_dataset['wo_stopfreq_lem'] = ml_dataset['wo_stopfreq'].apply(wordnet_lem.lemmatize) # Lematizamos las palabras
+    if LEMATIZE:
+        wnl = WordNetLemmatizer()
         
+        ml_dataset['wo_stopfreq_lem'] = ml_dataset['wo_stopfreq'].apply(wnl.lemmatize) # Lematizamos las palabras
+        ml_dataset['wo_stopfreq_lem'] = ml_dataset['wo_stopfreq_lem'].apply(lambda text: [wnl.lemmatize(i,j[0].lower()) if j[0].lower() in ['a','n','v'] else wnl.lemmatize(i) for i,j in pos_tag(word_tokenize(text))])
+
+        ml_dataset['wo_stopfreq_lem'] = ml_dataset['wo_stopfreq_lem'].apply(lambda text: unir_string(text))
+
+        print(ml_dataset['wo_stopfreq_lem'])
         #porter = PorterStemmer()
         #ml_dataset["wo_stopfreq_lem"] = ml_dataset["wo_stopfreq"].apply(porter.stem)
 
-    #else:
-    ml_dataset['wo_stopfreq_lem'] = ml_dataset['wo_stopfreq']
+    else:
+        ml_dataset['wo_stopfreq_lem'] = ml_dataset['wo_stopfreq']
 
     # Para ver el preprocesado de texto
     if DEBUG:
         ml_dataset.to_csv(DEBUG_FILE, index = True)
 
     # Crear Bag Of Words or TFIDF
-    token = RegexpTokenizer(r'[a-zA-Z0-9]+')
-    cv = CountVectorizer(max_df=0.95,min_df=2,stop_words='english', ngram_range = (1,1), tokenizer = token.tokenize)
-    tf = TfidfVectorizer(min_df=7, max_df=0.5, ngram_range=(1, 2), stop_words=stopwords.words('english'))
+    ## Negative
+    doc_neg=ml_dataset[ml_dataset['__target__']==0]
+    doc_neg_delta=doc_neg[doc_neg['airline'].str.contains('Delta',na=False)]
+    doc_neg_USAirways=doc_neg[doc_neg['airline'].str.contains('US Airways',na=False)]
+    ## Positive
+    doc_pos=ml_dataset[ml_dataset['__target__']==2]
+    doc_pos_delta=doc_pos[doc_pos['airline'].str.contains('Delta',na=False)]
+    doc_pos_USAirways=doc_pos[doc_pos['airline'].str.contains('US Airways',na=False)]
 
+
+    tf = TfidfVectorizer(min_df=7, max_df=0.5, ngram_range=(1, 2), stop_words=stopwords.words('english'))
+    
     #bow     = cv.fit_transform(ml_dataset['wo_stopfreq_lem'])
     tfidf   = cv.fit_transform(ml_dataset['wo_stopfreq_lem'])
     tf_feature_names =cv.get_feature_names_out
