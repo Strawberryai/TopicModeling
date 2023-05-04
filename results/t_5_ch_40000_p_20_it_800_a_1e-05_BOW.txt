@@ -8,7 +8,6 @@ airline 	: Delta
 sentiment 	: positive
 menssage 	: WordLematizer
 
-<<<<<<< HEAD
 topic coherence 	: -5.566776569664055
 
 -4.238684080579508
@@ -125,7 +124,6 @@ Palabra southwest 	 %0.0065439832
 Palabra face_with_tears_of_joy 	 %0.0065260795
 Palabra airline 	 %0.00649878
 Palabra free 	 %0.006435804
-=======
 topic coherence 	: -3.991008168303959
 
 -3.453234064270722
@@ -242,5 +240,4 @@ Palabra not 	 %0.023465225
 Palabra thanks 	 %0.023025738
 Palabra jetblue 	 %0.020766268
 Palabra in 	 %0.015445178
->>>>>>> 0c13427d89235ff4133bf3c652dd0a122df3e70a
 
