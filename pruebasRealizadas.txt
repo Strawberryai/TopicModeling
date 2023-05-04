@@ -80,7 +80,11 @@ chunksize 	: 40000
 passes 	: 20
 iterations 	: 800
 alpha 	: 1e-05
+<<<<<<< HEAD
 Vectorizing 	: TFIDF
+=======
+Vectorizing 	: BOW
+>>>>>>> 0c13427d89235ff4133bf3c652dd0a122df3e70a
 ------------------------------------------ 
 Numero de topicos 	: 5
 chunksize 	: 40000

@@ -4,7 +4,11 @@ chunksize 	: 40000
 passes 	: 20
 iterations 	: 800
 alpha 	: 1e-05
+airline 	: Delta
+sentiment 	: positive
+menssage 	: WordLematizer
 
+<<<<<<< HEAD
 topic coherence 	: -5.566776569664055
 
 -4.238684080579508
@@ -121,4 +125,122 @@ Palabra southwest 	 %0.0065439832
 Palabra face_with_tears_of_joy 	 %0.0065260795
 Palabra airline 	 %0.00649878
 Palabra free 	 %0.006435804
+=======
+topic coherence 	: -3.991008168303959
+
+-3.453234064270722
+ Palabras del topic: 
+Palabra it 	 %0.08545312
+Palabra of 	 %0.08292982
+Palabra in 	 %0.07977052
+Palabra great 	 %0.06695746
+Palabra service 	 %0.061152477
+Palabra your 	 %0.05865601
+Palabra was 	 %0.051101405
+Palabra not 	 %0.04980014
+Palabra love 	 %0.04631552
+Palabra but 	 %0.039895892
+Palabra on 	 %0.037478756
+Palabra be 	 %0.035292685
+Palabra airline 	 %0.030223286
+Palabra flight 	 %0.027591476
+Palabra just 	 %0.026637146
+Palabra with 	 %0.023648188
+Palabra we 	 %0.02342418
+Palabra jetblue 	 %0.020727212
+Palabra all 	 %0.01907421
+Palabra this 	 %0.018939737
+
+-3.78666213538917
+ Palabras del topic: 
+Palabra co 	 %0.16888106
+Palabra http 	 %0.14919952
+Palabra on 	 %0.12269364
+Palabra flight 	 %0.11823734
+Palabra our 	 %0.07348805
+Palabra great 	 %0.062356222
+Palabra can 	 %0.034062367
+Palabra from 	 %0.02939575
+Palabra it 	 %0.024684567
+Palabra jetblue 	 %0.02016586
+Palabra love 	 %0.017748557
+Palabra my 	 %0.017338526
+Palabra best 	 %0.015301201
+Palabra with 	 %0.015121903
+Palabra we 	 %0.013379873
+Palabra guys 	 %0.012339804
+Palabra be 	 %0.0122663
+Palabra just 	 %0.012172328
+Palabra was 	 %0.011523195
+Palabra that 	 %0.010806516
+
+-4.00558943238744
+ Palabras del topic: 
+Palabra will 	 %0.08546634
+Palabra with 	 %0.07274528
+Palabra awesome 	 %0.06611359
+Palabra me 	 %0.06570898
+Palabra jfk 	 %0.062235575
+Palabra now 	 %0.05445847
+Palabra thanks 	 %0.054206137
+Palabra my 	 %0.049302533
+Palabra you 	 %0.04883487
+Palabra was 	 %0.046002552
+Palabra in 	 %0.040502902
+Palabra at 	 %0.04047396
+Palabra but 	 %0.03142855
+Palabra guys 	 %0.031026669
+Palabra be 	 %0.027895296
+Palabra can 	 %0.025229303
+Palabra on 	 %0.024406984
+Palabra do 	 %0.02155586
+Palabra flight 	 %0.021168599
+Palabra it 	 %0.01949866
+
+-4.3493743522627675
+ Palabras del topic: 
+Palabra so 	 %0.15412796
+Palabra my 	 %0.11808635
+Palabra much 	 %0.08714353
+Palabra thanks 	 %0.08702527
+Palabra jetblue 	 %0.08637934
+Palabra it 	 %0.05460356
+Palabra fly 	 %0.046103597
+Palabra flight 	 %0.045907088
+Palabra was 	 %0.04348971
+Palabra from 	 %0.04177054
+Palabra your 	 %0.03501227
+Palabra of 	 %0.025196224
+Palabra me 	 %0.023501359
+Palabra are 	 %0.019785404
+Palabra airline 	 %0.017255161
+Palabra all 	 %0.01656603
+Palabra do 	 %0.014668183
+Palabra this 	 %0.012568553
+Palabra have 	 %0.011037958
+Palabra that 	 %0.010251996
+
+-4.360180857209695
+ Palabras del topic: 
+Palabra you 	 %0.13576561
+Palabra are 	 %0.09159321
+Palabra that 	 %0.06902367
+Palabra at 	 %0.06649612
+Palabra good 	 %0.052620985
+Palabra we 	 %0.05194546
+Palabra this 	 %0.04872969
+Palabra me 	 %0.0474542
+Palabra guys 	 %0.041859053
+Palabra have 	 %0.03833715
+Palabra just 	 %0.035968117
+Palabra best 	 %0.034658235
+Palabra do 	 %0.030110378
+Palabra love 	 %0.028023185
+Palabra great 	 %0.02769712
+Palabra your 	 %0.02418516
+Palabra not 	 %0.023465225
+Palabra thanks 	 %0.023025738
+Palabra jetblue 	 %0.020766268
+Palabra in 	 %0.015445178
+>>>>>>> 0c13427d89235ff4133bf3c652dd0a122df3e70a
 
