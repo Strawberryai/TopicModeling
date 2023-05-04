@@ -1,0 +1,124 @@
+
+Numero de topicos 	: 5
+chunksize 	: 40000
+passes 	: 20
+iterations 	: 800
+alpha 	: 1e-05
+
+topic coherence 	: -14.558120793242608
+
+-6.621848331243008
+ Palabras del topic: 
+Palabra ohio 	 %0.00042087774
+Palabra overbk 	 %0.00040276052
+Palabra 1aavvoreph 	 %0.00039062498
+Palabra hashtag 	 %0.0003906248
+Palabra swb1gr57cc 	 %0.00039062474
+Palabra communications 	 %0.0003906242
+Palabra nonexistent 	 %0.00038965087
+Palabra multiplier 	 %0.0003893103
+Palabra eternally 	 %0.00038427135
+Palabra person_tipping_hand 	 %0.0003839044
+Palabra input 	 %0.00038240667
+Palabra mcsi0dzpnz 	 %0.00038200512
+Palabra newborns 	 %0.0003800316
+Palabra mental 	 %0.0003800032
+Palabra phillip 	 %0.00037945862
+Palabra leav 	 %0.0003774679
+Palabra mckinnie 	 %0.00037605732
+Palabra belong 	 %0.000373775
+Palabra rats 	 %0.00037210216
+Palabra switching 	 %0.00037151534
+
+-13.735698925053743
+ Palabras del topic: 
+Palabra seulpvfn95 	 %0.00039478
+Palabra 5lb 	 %0.00038775726
+Palabra neutral_face 	 %0.0003834829
+Palabra notmadeofmoney 	 %0.00038348278
+Palabra moodlight 	 %0.000383449
+Palabra overcharging 	 %0.000383449
+Palabra mini 	 %0.000383449
+Palabra navigate 	 %0.00038344893
+Palabra liars 	 %0.0003834488
+Palabra needcoffe 	 %0.0003834321
+Palabra knowing 	 %0.00038341028
+Palabra monetary 	 %0.0003833795
+Palabra lovejetblue 	 %0.00037464438
+Palabra consumer 	 %0.00037028964
+Palabra printed 	 %0.0003670479
+Palabra 9may 	 %0.00036591303
+Palabra cool 	 %0.000365719
+Palabra 1820 	 %0.0003632898
+Palabra rather 	 %0.0003613197
+Palabra amaz 	 %0.0003475871
+
+-16.456456919566257
+ Palabras del topic: 
+Palabra stollen 	 %0.0003464902
+Palabra today 	 %0.00034424412
+Palabra lmfao 	 %0.00034205322
+Palabra reinforc 	 %0.0003377553
+Palabra shocking 	 %0.0003355648
+Palabra dark 	 %0.00033300524
+Palabra sickcrew 	 %0.00033242302
+Palabra badservice 	 %0.00033242302
+Palabra minefit 	 %0.00033242296
+Palabra rejecting 	 %0.00032945437
+Palabra fin 	 %0.0003233822
+Palabra passengers 	 %0.00032247143
+Palabra malaysia 	 %0.0003211298
+Palabra images 	 %0.00032070372
+Palabra plat 	 %0.00031932368
+Palabra rectify 	 %0.00031908057
+Palabra school 	 %0.00031666903
+Palabra disturb 	 %0.00031648783
+Palabra angryairtravel 	 %0.00031613233
+Palabra provided 	 %0.00031482405
+
+-17.401381261334297
+ Palabras del topic: 
+Palabra 1861 	 %0.0004155505
+Palabra bench 	 %0.0003910417
+Palabra germs 	 %0.00038850796
+Palabra n5o43svl8i 	 %0.0003837164
+Palabra alcohol 	 %0.00038353313
+Palabra emphasize 	 %0.00038319398
+Palabra calming 	 %0.00037885396
+Palabra handled 	 %0.00037269492
+Palabra faults 	 %0.00037033064
+Palabra 3854 	 %0.00036736391
+Palabra changed 	 %0.0003612035
+Palabra carousel 	 %0.000354877
+Palabra employer 	 %0.00035198082
+Palabra encounter 	 %0.00035008378
+Palabra brandloveaffair 	 %0.00034859515
+Palabra companies 	 %0.00034569777
+Palabra d9 	 %0.00034561858
+Palabra circulation 	 %0.00034284385
+Palabra funeral 	 %0.00034083487
+Palabra sudden 	 %0.0003400572
+
+-18.575218529015743
+ Palabras del topic: 
+Palabra carolina 	 %0.0004096424
+Palabra blue_heart 	 %0.00040291034
+Palabra generic 	 %0.00039339703
+Palabra eventprof 	 %0.00038211406
+Palabra flushed_face 	 %0.00038157665
+Palabra effic 	 %0.00038043314
+Palabra 6mos 	 %0.00038039332
+Palabra 6yo 	 %0.0003797489
+Palabra magazine 	 %0.00037701894
+Palabra jetblue 	 %0.00037684574
+Palabra powers 	 %0.0003731985
+Palabra hemisphere 	 %0.0003715588
+Palabra mltple 	 %0.00037143982
+Palabra 1657 	 %0.00037123816
+Palabra bringbacktheluvtordu 	 %0.0003704044
+Palabra nothanks 	 %0.00037004144
+Palabra dubai 	 %0.00036856052
+Palabra nowarmcloth 	 %0.00036785178
+Palabra backyard 	 %0.00036535028
+Palabra flgt 	 %0.00036495202
+
