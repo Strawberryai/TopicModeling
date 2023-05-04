@@ -63,6 +63,12 @@ VECTORIZING     = "TFIDF"                           # Sistema de vectorización:
 
 SAMPLING        = "OVERSAMPLING"                    # Método de muestreo de nuestro dataset: OVERSAMPLING \ UNDERSAMPLING | NONE
 
+ALPHAMIN        = 0
+ALPHAMAX        = 1
+BETAMIN         = 0
+BETAMAX         = 0.5
+INTERVALO_A     = 0.05
+INTERVALO_B     = 0.01
 # Downloads necesarios
 stop_words = stopwords.words()
 
@@ -90,6 +96,13 @@ def usage():
     print(f"-v                  vectorizing function                            DEFAULT: {VECTORIZING}")
     print("Other preprocessing strategies:")
     print(f"-u                  sampling strategy                               DEFAULT: {SAMPLING}")
+    print(f"--mina                  minimum alpha                                DEFAULT: {ALPHAMIN}")
+    print(f"--maxa                  maximum alpha                                DEFAULT: {ALPHAMAX}")
+    print(f"--minb                  minimum beta                                 DEFAULT: {BETAMIN}")
+    print(f"--maxb                  maximum beta                                 DEFAULT: {BETAMAX}")
+    print(f"--maxb                  maximum beta                                 DEFAULT: {BETAMAX}")
+    print(f"--inta                  intervalo alpha                              DEFAULT: {INTERVALO_A}")
+    print(f"--intb                  intervalo beta                               DEFAULT: {INTERVALO_B}")
     print("")
     
     print(f"Example: sentiment.py")
@@ -102,7 +115,7 @@ def usage():
 def load_options(options):
     # PRE: argumentos especificados por el usuario
     # POST: registramos la configuración del usuario en las variables globales
-    global INPUT_FILE, OUTPUT_PATH, TARGET_NAME, DEBUG, DEBUG_FILE, TWEET_ATRIB, DEMOJI, CLEANING, STOP_WORDS, FREQ_WORDS, LEMATIZE, VECTORIZING, SAMPLING
+    global INPUT_FILE, OUTPUT_PATH, TARGET_NAME, DEBUG, DEBUG_FILE, TWEET_ATRIB, DEMOJI, CLEANING, STOP_WORDS, FREQ_WORDS, LEMATIZE, VECTORIZING, SAMPLING, ALPHAMIN, ALPHAMAX, BETAMIN, BETAMAX,INTERVALO_A,INTERVALO_B    
 
     for opt,arg in options:
         if opt in ('-h', '--help'):
@@ -117,7 +130,18 @@ def load_options(options):
             DEBUG = bool(arg)
         elif opt in ('-g', '--debugfile'):
             DEBUG_FILE = str(arg)
-
+        elif opt =='--mina':
+            ALPHAMIN= float(arg)
+        elif opt =='--maxa':
+            ALPHAMAX= float(arg)
+        elif opt =='--minb':
+            BETAMIN= float(arg)
+        elif opt =='--maxb':
+            BETAMAX= float(arg)
+        elif opt =='--inta':
+            INTERVALO_A= float(arg)
+        elif opt =='--intb':
+            INTERVALO_B= float(arg)
         elif opt == '-w':
             TWEET_ATRIB = str(arg)
         elif opt == "-e":
@@ -160,6 +184,12 @@ def show_script_options():
     print(f"-f                  remove freq words           -> {FREQ_WORDS}")
     print(f"-l                  lematize text               -> {LEMATIZE}")
     print(f"-v                  vectorizing function        -> {VECTORIZING}")
+    print(f"-mina                  minimum alpha            -> {ALPHAMIN}")
+    print(f"-maxa                  maximum alpha            -> {ALPHAMAX}")
+    print(f"-minb                  minimum beta             -> {BETAMIN}")
+    print(f"-maxb                  maximum beta             -> {BETAMAX}")
+    print(f"-inta                  intervalo de alpha         -> {INTERVALO_A}")
+    print(f"-intb                  intervalo de beta         -> {INTERVALO_B}")
     print("Other preprocessing strategies:")
     print(f"-u                  sampling strategy           -> {SAMPLING}")
     print()
@@ -616,31 +646,16 @@ def main():
     beta_inic=0.05
     alfa_max=0.25
     beta_max=0.25
-    intervalo=0.05
-    alfa=alfa_inic
-    beta=beta_inic
+    alfa=ALPHAMIN
+    beta=BETAMIN
     text_file = open("barridoLDA.txt", "a")
     text_file.write("Esta prueba barre alfa y beta desde "+str(alfa_inic)+" a "+str(alfa_max))
     text_file.write("-----------------------------------------")
     text_file.write("\n")
     text_file.write("\n")
-    while alfa<alfa_max:
-        beta=beta_inic
-        while beta<beta_max:
-            text_file.write("alpha="+str(alfa)+"|beta="+str(beta))
-            text_file.write("\n")
-            no_topics = 5 #@param {type:"integer"}
-
-            no_top_words = 30 #@param {type:"integer"}
-
-            no_top_documents = 10 #@param {type:"integer"}
-
-            lda_model = LatentDirichletAllocation(n_components=5, max_iter=100, learning_method='online', learning_offset=50,random_state=0).fit(tfidf)
-            lda_W = lda_model.transform(tfidf)
-
-            lda_H=lda_model.components_ /lda_model.components_.sum(axis=1)[:, np.newaxis] 
-            print("LDA Topics")
-            display_topics(lda_H, lda_W, tf_feature_names, ml_dataset['wo_stopfreq_lem'], no_top_words, no_top_documents)
+    while alfa<ALPHAMAX:
+        beta=BETAMIN
+        while beta<BETAMAX:
 
             # Escalamos el texto -> NO CONSEGUIMOS MEJORES RESULTADOS
             # print("-- ESCALADO DE TEXTO")
@@ -682,25 +697,27 @@ def main():
                 print("-- TRAINING MODELS")
                 # TODO: Completar con topic modeling
             else:
+                text_file.write("alpha="+str(alfa)+"|beta="+str(beta))
+                text_file.write("\n")
                 no_topics=5
                 no_top_words=30
                 no_top_documents=10
-                lda_model = LatentDirichletAllocation(n_components=no_topics, max_iter=100, learning_method='online', learning_offset=50.,random_state=0).fit(tfidf)
+                lda_model = LatentDirichletAllocation(n_components=no_topics, max_iter=100, learning_method='online', learning_offset=50.,random_state=0,doc_topic_prior=alfa,topic_word_prior=beta).fit(tfidf)
                 lda_W = lda_model.transform(tfidf)
 
                 lda_H=lda_model.components_ /lda_model.components_.sum(axis=1)[:, np.newaxis] 
                 print("LDA Topics")
                 display_topics(lda_H, lda_W, tf_nombre_atributos, ml_dataset['wo_stopfreq_lem'], no_top_words, no_top_documents)
-                beta=beta+intervalo
                 text_file.write("-----------------------------------------")
                 text_file.write("\n")
-            alfa=alfa+intervalo
+                beta=beta+INTERVALO_B
+        alfa=alfa+INTERVALO_A
 
 if __name__ == "__main__":
     try:
         # options: registra los argumentos del usuario
         # remainder: registra los campos adicionales introducidos -> entrenar_knn.py esto_es_remainder
-        options, remainder = getopt(argv[1:], 'h:i:o:t:d:g:w:e:c:s:f:l:v:u:', ['help', 'input', 'output', 'target', 'debug', 'debugfile'])
+        options, remainder = getopt(argv[1:], 'h:i:o:t:d:g:w:e:c:s:f:l:v:u:', ['help', 'input', 'output', 'target', 'debug', 'debugfile','mina=','maxa=','minb=','maxb=','inta=','intb='])
         
     except getopt.GetoptError as err:
         # Error al parsear las opciones del comando
