@@ -60,7 +60,7 @@ FREQ_WORDS      = True                                      # Borramos las palab
 LEMATIZE        = True                                      # Lematizamos el texto (realmente hacemos Stemming)
 VECTORIZING     = "TFIDF"                                   # Sistema de vectorización: BOW | TFIDF
 
-SAMPLING        =  "NONE "                                  # Método de muestreo de nuestro dataset: OVERSAMPLING \ UNDERSAMPLING | NONE
+SAMPLING        = "NONE"                                    # Método de muestreo de nuestro dataset: OVERSAMPLING \ UNDERSAMPLING | NONE
 
 # Downloads necesarios
 stop_words = stopwords.words()
@@ -132,7 +132,7 @@ def load_options(options):
         elif opt == "-e":
             DEMOJI = bool(arg) 
         elif opt == "-c":
-            CLEANING = bool(arg) 
+            CLEANING = False 
         elif opt == "-s":
             STOP_WORDS = bool(arg) 
             print('prueba')
