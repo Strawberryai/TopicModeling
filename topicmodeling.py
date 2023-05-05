@@ -20,6 +20,7 @@ from nltk.stem import WordNetLemmatizer
 from collections import Counter
 
 from nltk.stem import PorterStemmer
+from nltk.tokenize import RegexpTokenizer
 
 import pickle
 
@@ -35,6 +36,7 @@ from sklearn.naive_bayes                import GaussianNB, MultinomialNB, Bernou
 # Train LDA model.
 from gensim.models import LdaModel
 from gensim.matutils import Sparse2Corpus
+from gensim.models import TfidfModel
 
 # Variables globales
 INPUT_FILE      = "./data/TweetsTrainDev.csv"               # Path del archivo de entrada
@@ -58,7 +60,7 @@ CLEANING        = True                                      # Limpiar textos: ca
 STOP_WORDS      = False                                     # Tratar las stop words
 FREQ_WORDS      = True                                      # Borramos las palabras más frecuentes. Pueden no aportar demasiada información.
 LEMATIZE        = True                                      # Lematizamos el texto (realmente hacemos Stemming)
-VECTORIZING     = "TFIDF"                                   # Sistema de vectorización: BOW | TFIDF
+VECTORIZING     = "BOW"                                   # Sistema de vectorización: BOW | TFIDF
 
 SAMPLING        = "NONE"                                    # Método de muestreo de nuestro dataset: OVERSAMPLING \ UNDERSAMPLING | NONE
 
@@ -626,7 +628,7 @@ def main():
     # Creamos el dataframe después de aplicar todos los preprocesos necesarios
     if VECTORIZING == "BOW":
         # Tokenize the documents.
-        from nltk.tokenize import RegexpTokenizer
+        
 
         # Split the documents into tokens.
         tokenizer = RegexpTokenizer(r'\w+')
@@ -656,39 +658,8 @@ def main():
         temp = dictionary[0]  # This is only to "load" the dictionary.
         id2word = dictionary.id2token
 
-
-    elif VECTORIZING == "TFIDF":
-        print("Haciendo TF-IDF")
-        dataframe = pd.DataFrame(tfidf.toarray()) #Si se escala hay que quitar el .toarray()
-        corpus = Sparse2Corpus(tfidf)
-    
-        vocabulary_dict = tf.vocabulary_
-        aux = {index:word for word,index in vocabulary_dict.items()}
-        id2word = {index:word for index, word in aux.items()}
-
     # Añadimos los atributos seleccionados al dataset
     #dataframe['__target__'] = ml_dataset['__target__']
-
-    # Division Train y Dev
-    #print("-- TRAIN Y DEV SPLIT")
-    #train, dev = train_test_split(dataframe,test_size=DEV_SIZE,random_state=RANDOM_STATE,stratify=dataframe[['__target__']])
-
-    #trainX = train.drop('__target__', axis=1)
-    #trainY = np.array(train['__target__'])
-    #devX = dev.drop('__target__', axis=1)
-    #devY = np.array(dev['__target__'])
-
-    # Undersampling
-    '''
-    if SAMPLING == "UNDERSAMPLING":
-        undersample = RandomUnderSampler(sampling_strategy="not minority", random_state=RANDOM_STATE)   # Balancea todas las clases menos la minoritaria
-        trainX,trainY = undersample.fit_resample(trainX,trainY)
-        devX,devY = undersample.fit_resample(devX, devY)
-    elif SAMPLING == "OVERSAMPLING":
-        oversample = RandomOverSampler(sampling_strategy='not majority', random_state=RANDOM_STATE)    # Balancea todas las clases menos la mayoritaria
-        trainX,trainY = oversample.fit_resample(trainX,trainY)
-        devX,devY = oversample.fit_resample(devX, devY)
-    '''
 
     # Entrenando modelos
     print("-- TRAINING MODELS")
@@ -698,14 +669,12 @@ def main():
 
     #parametros para el training
     # Set training parameters.
-    num_topics = 10
+    num_topics = 5
     chunksize = 80000
     passes = 50
     iterations = 700
     eval_every = None  # Don't evaluate model perplexity, takes too much time.
     alpha=0.00001
-
-    
 
 
     model = LdaModel(

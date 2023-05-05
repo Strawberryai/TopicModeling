@@ -373,3 +373,31 @@ iterations 	: 800
 alpha 	: 1e-05
 Vectorizing 	: BOW
 ------------------------------------------ 
+Numero de topicos 	: 10
+chunksize 	: 80000
+passes 	: 50
+iterations 	: 700
+alpha 	: 1e-05
+Vectorizing 	: BOW
+------------------------------------------ 
+Numero de topicos 	: 10
+chunksize 	: 80000
+passes 	: 50
+iterations 	: 700
+alpha 	: 1e-05
+Vectorizing 	: BOW
+------------------------------------------ 
+Numero de topicos 	: 5
+chunksize 	: 80000
+passes 	: 50
+iterations 	: 700
+alpha 	: 1e-05
+Vectorizing 	: BOW
+------------------------------------------ 
+Numero de topicos 	: 5
+chunksize 	: 80000
+passes 	: 50
+iterations 	: 700
+alpha 	: 1e-05
+Vectorizing 	: BOW
+------------------------------------------ 
