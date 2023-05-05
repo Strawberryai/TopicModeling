@@ -58,7 +58,7 @@ TWEET_ATRIB     = "text"                                    # Atributo de entrad
 
 DEMOJI          = True                                      # Tener en cuenta los emojis transformándolos en texto
 CLEANING        = True                                      # Limpiar textos: carácteres especiales, abrebiaturas, signos de puntuación...
-STOP_WORDS      = False                                     # Tratar las stop words
+STOP_WORDS      = True                                     # Tratar las stop words
 FREQ_WORDS      = True                                      # Borramos las palabras más frecuentes. Pueden no aportar demasiada información.
 LEMATIZE        = True                                      # Lematizamos el texto (realmente hacemos Stemming)
 VECTORIZING     = "BOW"                                   # Sistema de vectorización: BOW | TFIDF
@@ -246,7 +246,7 @@ def atributos_excepto(atributos, excepciones):
 
     return atribs
 
-def guardar_resultadosLDA(configuracion, resultado, topic_coherence):
+def guardar_resultadosLDA(configuracion, resultado, topic_coherence, cv):
     #crear carpeta para guardar resultados 
     if not os.path.exists('results'):
         os.makedirs('results')
@@ -271,6 +271,7 @@ def guardar_resultadosLDA(configuracion, resultado, topic_coherence):
         file.write(f"menssage \t: {MESSAGE}\n")
         file.write("\n")
         file.write(f"topic coherence \t: {topic_coherence}\n")
+        file.write(f"c_v coherence \t: {cv}\n")
         file.write("\n")
         for topic in resultado:
             #no se que es este numero
@@ -291,6 +292,7 @@ def guardar_resultadosLDA(configuracion, resultado, topic_coherence):
         archivo.write(f"iterations \t: {iterations}\n")
         archivo.write(f"alpha \t: {alpha}\n")
         archivo.write("Vectorizing \t: "+VECTORIZING+"\n")
+        archivo.write(f"c_v coherence \t: {cv}\n")
         archivo.write("------------------------------------------ \n")
         
 
@@ -670,51 +672,58 @@ def main():
 
     #parametros para el training
     # Set training parameters.
-    num_topics = 10
-    chunksize = 40000
-    passes = 10
-    iterations = 1200
+    #num_topics = 10
+    chunksize = 20000
+    passes = 20
+    iterations = 500
     eval_every = None  # Don't evaluate model perplexity, takes too much time.
-    alpha=0.00001
+    alpha=0.0001
 
+    ##########################          Barrido de valores de num_topics               ####################################
+    
+    for i in range(1, 13): #
 
-    model = LdaModel(
-        corpus=corpus,
-        id2word=id2word,
-        chunksize=chunksize,
-        alpha=alpha,
-        eta='auto',
-        iterations=iterations,
-        num_topics=num_topics,
-        passes=passes,
-        eval_every=eval_every
-    )
+        num_topics = i
 
-    configuracion = {'n_topics': num_topics,
-                     'chunksize': chunksize,
-                     'passes':passes,
-                     'iterations':iterations,
-                     'alpha':alpha
-                    }
+        model = LdaModel(
+            corpus=corpus,
+            id2word=id2word,
+            chunksize=chunksize,
+            alpha=alpha,
+            eta='auto',
+            iterations=iterations,
+            num_topics=num_topics,
+            passes=passes,
+            eval_every=eval_every
+        )
 
-    top_topics = model.top_topics(corpus)
+        configuracion = {'n_topics': num_topics,
+                        'chunksize': chunksize,
+                        'passes':passes,
+                        'iterations':iterations,
+                        'alpha':alpha
+                        }
 
-    # Average topic coherence is the sum of topic coherences of all topics, divided by the number of topics.
-    avg_topic_coherence = sum([t[1] for t in top_topics]) / num_topics
-    print('Average topic coherence: %.4f.' % avg_topic_coherence)
+        top_topics = model.top_topics(corpus)
 
-    cm = CoherenceModel(model=model, corpus=corpus, dictionary=dictionary, coherence='c_v')
-    #cm = CoherenceModel(model=model, corpus=corpus, dictionary=dictionary, coherence='c_v')
-    # To get the final coherence value simply type:
-    print("Coherence calculado con lo del c_v"+str(cm.get_coherence()))
+        # Average topic coherence is the sum of topic coherences of all topics, divided by the number of topics.
+        avg_topic_coherence = sum([t[1] for t in top_topics]) / num_topics
+        print('Average topic coherence: %.4f.' % avg_topic_coherence)
 
-    #cm = CoherenceModel(model=model, corpus=corpus, dictionary=dictionary, coherence='u_mass')
-    # To get the final coherence value simply type:
-    #print("Coherence calculado con lo del u_mass"+str(cm.get_coherence()))
+        cm = CoherenceModel(model=model, texts=ml_dataset['wo_stopfreq_lem'], dictionary=dictionary, coherence='c_v')
+        #cm = CoherenceModel(model=model, corpus=corpus, dictionary=dictionary, coherence='c_v')
+        # To get the final coherence value simply type:
+        print("Coherence calculado con lo del c_v "+str(cm.get_coherence()))
 
-    from pprint import pprint
-    pprint(top_topics)
-    guardar_resultadosLDA(configuracion=configuracion, resultado=top_topics, topic_coherence=avg_topic_coherence)
+        #cm = CoherenceModel(model=model, corpus=corpus, dictionary=dictionary, coherence='u_mass')
+        # To get the final coherence value simply type:
+        #print("Coherence calculado con lo del u_mass"+str(cm.get_coherence()))
+
+        from pprint import pprint
+        pprint(top_topics)
+        guardar_resultadosLDA(configuracion=configuracion, resultado=top_topics, topic_coherence=avg_topic_coherence, cv=cm.get_coherence())
+
+    ###########################################################################################################################################
 
 if __name__ == "__main__":
     try:

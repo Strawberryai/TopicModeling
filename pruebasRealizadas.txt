@@ -415,3 +415,553 @@ iterations 	: 700
 alpha 	: 1e-05
 Vectorizing 	: BOW
 ------------------------------------------ 
+Numero de topicos 	: 10
+chunksize 	: 40000
+passes 	: 10
+iterations 	: 1200
+alpha 	: 1e-05
+Vectorizing 	: BOW
+------------------------------------------ 
+Numero de topicos 	: 10
+chunksize 	: 40000
+passes 	: 10
+iterations 	: 1200
+alpha 	: 1e-05
+Vectorizing 	: BOW
+------------------------------------------ 
+Numero de topicos 	: 1
+chunksize 	: 40000
+passes 	: 10
+iterations 	: 1200
+alpha 	: 1e-05
+Vectorizing 	: BOW
+------------------------------------------ 
+Numero de topicos 	: 2
+chunksize 	: 40000
+passes 	: 10
+iterations 	: 1200
+alpha 	: 1e-05
+Vectorizing 	: BOW
+------------------------------------------ 
+Numero de topicos 	: 3
+chunksize 	: 40000
+passes 	: 10
+iterations 	: 1200
+alpha 	: 1e-05
+Vectorizing 	: BOW
+------------------------------------------ 
+Numero de topicos 	: 4
+chunksize 	: 40000
+passes 	: 10
+iterations 	: 1200
+alpha 	: 1e-05
+Vectorizing 	: BOW
+------------------------------------------ 
+Numero de topicos 	: 5
+chunksize 	: 40000
+passes 	: 10
+iterations 	: 1200
+alpha 	: 1e-05
+Vectorizing 	: BOW
+------------------------------------------ 
+Numero de topicos 	: 6
+chunksize 	: 40000
+passes 	: 10
+iterations 	: 1200
+alpha 	: 1e-05
+Vectorizing 	: BOW
+------------------------------------------ 
+Numero de topicos 	: 7
+chunksize 	: 40000
+passes 	: 10
+iterations 	: 1200
+alpha 	: 1e-05
+Vectorizing 	: BOW
+------------------------------------------ 
+Numero de topicos 	: 8
+chunksize 	: 40000
+passes 	: 10
+iterations 	: 1200
+alpha 	: 1e-05
+Vectorizing 	: BOW
+------------------------------------------ 
+Numero de topicos 	: 9
+chunksize 	: 40000
+passes 	: 10
+iterations 	: 1200
+alpha 	: 1e-05
+Vectorizing 	: BOW
+------------------------------------------ 
+Numero de topicos 	: 10
+chunksize 	: 40000
+passes 	: 10
+iterations 	: 1200
+alpha 	: 1e-05
+Vectorizing 	: BOW
+------------------------------------------ 
+Numero de topicos 	: 11
+chunksize 	: 40000
+passes 	: 10
+iterations 	: 1200
+alpha 	: 1e-05
+Vectorizing 	: BOW
+------------------------------------------ 
+Numero de topicos 	: 12
+chunksize 	: 40000
+passes 	: 10
+iterations 	: 1200
+alpha 	: 1e-05
+Vectorizing 	: BOW
+------------------------------------------ 
+Numero de topicos 	: 13
+chunksize 	: 40000
+passes 	: 10
+iterations 	: 1200
+alpha 	: 1e-05
+Vectorizing 	: BOW
+------------------------------------------ 
+Numero de topicos 	: 14
+chunksize 	: 40000
+passes 	: 10
+iterations 	: 1200
+alpha 	: 1e-05
+Vectorizing 	: BOW
+------------------------------------------ 
+Numero de topicos 	: 1
+chunksize 	: 40000
+passes 	: 10
+iterations 	: 750
+alpha 	: 0.01
+Vectorizing 	: BOW
+Numero de topicos 	: 1
+chunksize 	: 40000
+passes 	: 10
+iterations 	: 1200
+alpha 	: 0.01
+Vectorizing 	: BOW
+c_v coherence 	: 0.3930406892411275
+------------------------------------------ 
+Numero de topicos 	: 2
+chunksize 	: 40000
+passes 	: 10
+iterations 	: 1200
+alpha 	: 0.01
+Vectorizing 	: BOW
+c_v coherence 	: 0.40739364106706205
+------------------------------------------ 
+Numero de topicos 	: 3
+chunksize 	: 40000
+passes 	: 10
+iterations 	: 1200
+alpha 	: 0.01
+Vectorizing 	: BOW
+c_v coherence 	: 0.41361099717363753
+------------------------------------------ 
+Numero de topicos 	: 4
+chunksize 	: 40000
+passes 	: 10
+iterations 	: 1200
+alpha 	: 0.01
+Vectorizing 	: BOW
+c_v coherence 	: 0.39661341831421304
+------------------------------------------ 
+Numero de topicos 	: 5
+chunksize 	: 40000
+passes 	: 10
+iterations 	: 1200
+alpha 	: 0.01
+Vectorizing 	: BOW
+c_v coherence 	: 0.40451413070062137
+------------------------------------------ 
+Numero de topicos 	: 6
+chunksize 	: 40000
+passes 	: 10
+iterations 	: 1200
+alpha 	: 0.01
+Vectorizing 	: BOW
+c_v coherence 	: 0.41119241394731515
+------------------------------------------ 
+Numero de topicos 	: 7
+chunksize 	: 40000
+passes 	: 10
+iterations 	: 1200
+alpha 	: 0.01
+Vectorizing 	: BOW
+c_v coherence 	: 0.43322111217429043
+------------------------------------------ 
+Numero de topicos 	: 8
+chunksize 	: 40000
+passes 	: 10
+iterations 	: 1200
+alpha 	: 0.01
+Vectorizing 	: BOW
+c_v coherence 	: 0.4050499800725985
+------------------------------------------ 
+Numero de topicos 	: 9
+chunksize 	: 40000
+passes 	: 10
+iterations 	: 1200
+alpha 	: 0.01
+Vectorizing 	: BOW
+c_v coherence 	: 0.4199365360091091
+------------------------------------------ 
+Numero de topicos 	: 10
+chunksize 	: 40000
+passes 	: 10
+iterations 	: 1200
+alpha 	: 0.01
+Vectorizing 	: BOW
+c_v coherence 	: 0.38692908689004935
+------------------------------------------ 
+Numero de topicos 	: 11
+chunksize 	: 40000
+passes 	: 10
+iterations 	: 1200
+alpha 	: 0.01
+Vectorizing 	: BOW
+c_v coherence 	: 0.43153756004286065
+------------------------------------------ 
+Numero de topicos 	: 12
+chunksize 	: 40000
+passes 	: 10
+iterations 	: 1200
+alpha 	: 0.01
+Vectorizing 	: BOW
+c_v coherence 	: 0.4270409751360909
+------------------------------------------ 
+Numero de topicos 	: 13
+chunksize 	: 40000
+passes 	: 10
+iterations 	: 1200
+alpha 	: 0.01
+Vectorizing 	: BOW
+c_v coherence 	: 0.4235177999963375
+------------------------------------------ 
+Numero de topicos 	: 14
+chunksize 	: 40000
+passes 	: 10
+iterations 	: 1200
+alpha 	: 0.01
+Vectorizing 	: BOW
+c_v coherence 	: 0.40567564678169
+------------------------------------------ 
+Numero de topicos 	: 1
+chunksize 	: 40000
+passes 	: 10
+iterations 	: 1200
+alpha 	: 0.1
+Vectorizing 	: BOW
+c_v coherence 	: 0.39304068924112745
+------------------------------------------ 
+Numero de topicos 	: 2
+chunksize 	: 40000
+passes 	: 10
+iterations 	: 1200
+alpha 	: 0.1
+Vectorizing 	: BOW
+c_v coherence 	: 0.41741674630613723
+------------------------------------------ 
+Numero de topicos 	: 3
+chunksize 	: 40000
+passes 	: 10
+iterations 	: 1200
+alpha 	: 0.1
+Vectorizing 	: BOW
+c_v coherence 	: 0.3825486621877601
+------------------------------------------ 
+Numero de topicos 	: 4
+chunksize 	: 40000
+passes 	: 10
+iterations 	: 1200
+alpha 	: 0.1
+Vectorizing 	: BOW
+c_v coherence 	: 0.41375698118317406
+------------------------------------------ 
+Numero de topicos 	: 5
+chunksize 	: 40000
+passes 	: 10
+iterations 	: 1200
+alpha 	: 0.1
+Vectorizing 	: BOW
+c_v coherence 	: 0.41404722095426993
+------------------------------------------ 
+Numero de topicos 	: 6
+chunksize 	: 40000
+passes 	: 10
+iterations 	: 1200
+alpha 	: 0.1
+Vectorizing 	: BOW
+c_v coherence 	: 0.4103456962163797
+------------------------------------------ 
+Numero de topicos 	: 7
+chunksize 	: 40000
+passes 	: 10
+iterations 	: 1200
+alpha 	: 0.1
+Vectorizing 	: BOW
+c_v coherence 	: 0.4342729324556331
+------------------------------------------ 
+Numero de topicos 	: 8
+chunksize 	: 40000
+passes 	: 10
+iterations 	: 1200
+alpha 	: 0.1
+Vectorizing 	: BOW
+c_v coherence 	: 0.4178526604463083
+------------------------------------------ 
+Numero de topicos 	: 9
+chunksize 	: 40000
+passes 	: 10
+iterations 	: 1200
+alpha 	: 0.1
+Vectorizing 	: BOW
+c_v coherence 	: 0.43535924937026826
+------------------------------------------ 
+Numero de topicos 	: 10
+chunksize 	: 40000
+passes 	: 10
+iterations 	: 1200
+alpha 	: 0.1
+Vectorizing 	: BOW
+c_v coherence 	: 0.41208350885489275
+------------------------------------------ 
+Numero de topicos 	: 11
+chunksize 	: 40000
+passes 	: 10
+iterations 	: 1200
+alpha 	: 0.1
+Vectorizing 	: BOW
+c_v coherence 	: 0.42070503445470386
+------------------------------------------ 
+Numero de topicos 	: 12
+chunksize 	: 40000
+passes 	: 10
+iterations 	: 1200
+alpha 	: 0.1
+Vectorizing 	: BOW
+c_v coherence 	: 0.4067169575599466
+------------------------------------------ 
+Numero de topicos 	: 13
+chunksize 	: 40000
+passes 	: 10
+iterations 	: 1200
+alpha 	: 0.1
+Vectorizing 	: BOW
+c_v coherence 	: 0.4146712663377101
+------------------------------------------ 
+Numero de topicos 	: 14
+chunksize 	: 40000
+passes 	: 10
+iterations 	: 1200
+alpha 	: 0.1
+Vectorizing 	: BOW
+c_v coherence 	: 0.40298008853666073
+------------------------------------------ 
+Numero de topicos 	: 1
+chunksize 	: 40000
+passes 	: 10
+iterations 	: 1200
+alpha 	: 0.0001
+Vectorizing 	: BOW
+c_v coherence 	: 0.3930406892411275
+------------------------------------------ 
+Numero de topicos 	: 2
+chunksize 	: 40000
+passes 	: 10
+iterations 	: 1200
+alpha 	: 0.0001
+Vectorizing 	: BOW
+c_v coherence 	: 0.4186112791412538
+------------------------------------------ 
+Numero de topicos 	: 3
+chunksize 	: 40000
+passes 	: 10
+iterations 	: 1200
+alpha 	: 0.0001
+Vectorizing 	: BOW
+c_v coherence 	: 0.394573702797783
+------------------------------------------ 
+Numero de topicos 	: 4
+chunksize 	: 40000
+passes 	: 10
+iterations 	: 1200
+alpha 	: 0.0001
+Vectorizing 	: BOW
+c_v coherence 	: 0.39548333644083544
+------------------------------------------ 
+Numero de topicos 	: 5
+chunksize 	: 40000
+passes 	: 10
+iterations 	: 1200
+alpha 	: 0.0001
+Vectorizing 	: BOW
+c_v coherence 	: 0.4207204619547821
+------------------------------------------ 
+Numero de topicos 	: 6
+chunksize 	: 40000
+passes 	: 10
+iterations 	: 1200
+alpha 	: 0.0001
+Vectorizing 	: BOW
+c_v coherence 	: 0.4117852159454287
+------------------------------------------ 
+Numero de topicos 	: 7
+chunksize 	: 40000
+passes 	: 10
+iterations 	: 1200
+alpha 	: 0.0001
+Vectorizing 	: BOW
+c_v coherence 	: 0.4258006804809305
+------------------------------------------ 
+Numero de topicos 	: 8
+chunksize 	: 40000
+passes 	: 10
+iterations 	: 1200
+alpha 	: 0.0001
+Vectorizing 	: BOW
+c_v coherence 	: 0.4431207453991344
+------------------------------------------ 
+Numero de topicos 	: 9
+chunksize 	: 40000
+passes 	: 10
+iterations 	: 1200
+alpha 	: 0.0001
+Vectorizing 	: BOW
+c_v coherence 	: 0.42559525636813833
+------------------------------------------ 
+Numero de topicos 	: 10
+chunksize 	: 40000
+passes 	: 10
+iterations 	: 1200
+alpha 	: 0.0001
+Vectorizing 	: BOW
+c_v coherence 	: 0.424425887805563
+------------------------------------------ 
+Numero de topicos 	: 11
+chunksize 	: 40000
+passes 	: 10
+iterations 	: 1200
+alpha 	: 0.0001
+Vectorizing 	: BOW
+c_v coherence 	: 0.41623241890323537
+------------------------------------------ 
+Numero de topicos 	: 12
+chunksize 	: 40000
+passes 	: 10
+iterations 	: 1200
+alpha 	: 0.0001
+Vectorizing 	: BOW
+c_v coherence 	: 0.42781504573587936
+------------------------------------------ 
+Numero de topicos 	: 13
+chunksize 	: 40000
+passes 	: 10
+iterations 	: 1200
+alpha 	: 0.0001
+Vectorizing 	: BOW
+c_v coherence 	: 0.4033856477756412
+------------------------------------------ 
+Numero de topicos 	: 14
+chunksize 	: 40000
+passes 	: 10
+iterations 	: 1200
+alpha 	: 0.0001
+Vectorizing 	: BOW
+c_v coherence 	: 0.4192941867318695
+------------------------------------------ 
+Numero de topicos 	: 1
+chunksize 	: 20000
+passes 	: 20
+iterations 	: 500
+alpha 	: 0.0001
+Vectorizing 	: BOW
+c_v coherence 	: 0.39304068924112745
+------------------------------------------ 
+Numero de topicos 	: 2
+chunksize 	: 20000
+passes 	: 20
+iterations 	: 500
+alpha 	: 0.0001
+Vectorizing 	: BOW
+c_v coherence 	: 0.39529082324723086
+------------------------------------------ 
+Numero de topicos 	: 3
+chunksize 	: 20000
+passes 	: 20
+iterations 	: 500
+alpha 	: 0.0001
+Vectorizing 	: BOW
+c_v coherence 	: 0.41716852448023367
+------------------------------------------ 
+Numero de topicos 	: 4
+chunksize 	: 20000
+passes 	: 20
+iterations 	: 500
+alpha 	: 0.0001
+Vectorizing 	: BOW
+c_v coherence 	: 0.3810292473193309
+------------------------------------------ 
+Numero de topicos 	: 5
+chunksize 	: 20000
+passes 	: 20
+iterations 	: 500
+alpha 	: 0.0001
+Vectorizing 	: BOW
+c_v coherence 	: 0.4062169923143834
+------------------------------------------ 
+Numero de topicos 	: 6
+chunksize 	: 20000
+passes 	: 20
+iterations 	: 500
+alpha 	: 0.0001
+Vectorizing 	: BOW
+c_v coherence 	: 0.4079720478063516
+------------------------------------------ 
+Numero de topicos 	: 7
+chunksize 	: 20000
+passes 	: 20
+iterations 	: 500
+alpha 	: 0.0001
+Vectorizing 	: BOW
+c_v coherence 	: 0.41218964737290575
+------------------------------------------ 
+Numero de topicos 	: 8
+chunksize 	: 20000
+passes 	: 20
+iterations 	: 500
+alpha 	: 0.0001
+Vectorizing 	: BOW
+c_v coherence 	: 0.4263796896875047
+------------------------------------------ 
+Numero de topicos 	: 9
+chunksize 	: 20000
+passes 	: 20
+iterations 	: 500
+alpha 	: 0.0001
+Vectorizing 	: BOW
+c_v coherence 	: 0.4287885853342512
+------------------------------------------ 
+Numero de topicos 	: 10
+chunksize 	: 20000
+passes 	: 20
+iterations 	: 500
+alpha 	: 0.0001
+Vectorizing 	: BOW
+c_v coherence 	: 0.4258221603407829
+------------------------------------------ 
+Numero de topicos 	: 11
+chunksize 	: 20000
+passes 	: 20
+iterations 	: 500
+alpha 	: 0.0001
+Vectorizing 	: BOW
+c_v coherence 	: 0.4185178774681442
+------------------------------------------ 
+Numero de topicos 	: 12
+chunksize 	: 20000
+passes 	: 20
+iterations 	: 500
+alpha 	: 0.0001
+Vectorizing 	: BOW
+c_v coherence 	: 0.4341256822209511
+------------------------------------------ 
