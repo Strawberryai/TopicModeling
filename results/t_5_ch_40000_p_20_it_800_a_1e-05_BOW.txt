@@ -5,239 +5,123 @@ passes 	: 20
 iterations 	: 800
 alpha 	: 1e-05
 airline 	: Delta
-sentiment 	: positive
-menssage 	: WordLematizer
+sentiment 	: negative
+menssage 	: delta negativo
 
-topic coherence 	: -5.566776569664055
+topic coherence 	: -3.0766755275348387
 
--4.238684080579508
+-2.3559103857473467
  Palabras del topic: 
-Palabra bag 	 %0.028937036
-Palabra flightled 	 %0.016550371
-Palabra flight 	 %0.016064456
-Palabra thanks 	 %0.01554238
-Palabra ticket 	 %0.013099798
-Palabra it 	 %0.013089788
-Palabra seat 	 %0.0119386
-Palabra lost 	 %0.01165408
-Palabra back 	 %0.011232336
-Palabra call 	 %0.010953099
-Palabra baggage 	 %0.010654339
-Palabra travel 	 %0.009707205
-Palabra days 	 %0.009119857
-Palabra booked 	 %0.008385897
-Palabra make 	 %0.008162303
-Palabra luggage 	 %0.007924431
-Palabra hours 	 %0.007771177
-Palabra told 	 %0.0076502827
-Palabra again 	 %0.0073914547
-Palabra me 	 %0.007272528
+Palabra you 	 %0.074123
+Palabra it 	 %0.04385008
+Palabra but 	 %0.040874697
+Palabra your 	 %0.039137486
+Palabra that 	 %0.03705167
+Palabra for 	 %0.030648649
+Palabra they 	 %0.030165639
+Palabra was 	 %0.02949413
+Palabra just 	 %0.028459184
+Palabra have 	 %0.028360445
+Palabra are 	 %0.028207427
+Palabra of 	 %0.022208456
+Palabra with 	 %0.0218288
+Palabra as 	 %0.018680418
+Palabra do 	 %0.018358132
+Palabra be 	 %0.018345354
+Palabra me 	 %0.017071942
+Palabra in 	 %0.016175171
+Palabra why 	 %0.015805257
+Palabra should 	 %0.015626913
 
--4.331269456524763
+-2.6552027828077702
  Palabras del topic: 
-Palabra wait 	 %0.014750432
-Palabra today 	 %0.014136169
-Palabra weather 	 %0.013982781
-Palabra delay 	 %0.013486095
-Palabra tomorrow 	 %0.013431883
-Palabra delayed 	 %0.011358223
-Palabra plane 	 %0.011313415
-Palabra boarding 	 %0.010372996
-Palabra jfk 	 %0.009683417
-Palabra time 	 %0.0092120655
-Palabra flying 	 %0.008871123
-Palabra minutes 	 %0.008583238
-Palabra fly 	 %0.00840151
-Palabra flighted 	 %0.008356164
-Palabra board 	 %0.008135142
-Palabra bags 	 %0.007911743
-Palabra back 	 %0.0078495685
-Palabra hour 	 %0.007829937
-Palabra day 	 %0.007759921
-Palabra home 	 %0.007572417
+Palabra it 	 %0.04728381
+Palabra from 	 %0.043026462
+Palabra for 	 %0.0428344
+Palabra with 	 %0.040046968
+Palabra of 	 %0.030100672
+Palabra delayed 	 %0.028696094
+Palabra delay 	 %0.027852299
+Palabra time 	 %0.027230611
+Palabra at 	 %0.02718505
+Palabra what 	 %0.02633451
+Palabra no 	 %0.02365191
+Palabra was 	 %0.0220688
+Palabra am 	 %0.021694995
+Palabra hour 	 %0.020222496
+Palabra up 	 %0.019564057
+Palabra this 	 %0.01868032
+Palabra an 	 %0.01826668
+Palabra still 	 %0.018152555
+Palabra going 	 %0.017760746
+Palabra now 	 %0.016357405
 
--4.9866783895677464
+-2.7353048512110885
  Palabras del topic: 
-Palabra you 	 %0.02644752
-Palabra dm 	 %0.015189875
-Palabra problems 	 %0.014894557
-Palabra phone 	 %0.014828554
-Palabra number 	 %0.014305352
-Palabra experience 	 %0.013051413
-Palabra email 	 %0.011615132
-Palabra booking 	 %0.011265722
-Palabra line 	 %0.010272673
-Palabra worst 	 %0.010221886
-Palabra now 	 %0.010159989
-Palabra call 	 %0.009712725
-Palabra check 	 %0.009502617
-Palabra help 	 %0.009430363
-Palabra gate 	 %0.009342249
-Palabra service 	 %0.00924631
-Palabra united 	 %0.007741924
-Palabra agent 	 %0.0075210137
-Palabra delayed 	 %0.007505837
-Palabra flight 	 %0.007277566
+Palabra can 	 %0.04460199
+Palabra me 	 %0.043185763
+Palabra you 	 %0.03762985
+Palabra we 	 %0.036311354
+Palabra no 	 %0.035630085
+Palabra get 	 %0.034179077
+Palabra now 	 %0.029780615
+Palabra for 	 %0.02476156
+Palabra jfk 	 %0.023763005
+Palabra are 	 %0.022387639
+Palabra at 	 %0.021085866
+Palabra do 	 %0.02032482
+Palabra have 	 %0.018682677
+Palabra delayed 	 %0.018461086
+Palabra of 	 %0.018336717
+Palabra our 	 %0.017945781
+Palabra then 	 %0.017328031
+Palabra hours 	 %0.017232506
+Palabra more 	 %0.015863275
+Palabra flight 	 %0.015433486
 
--5.029511339516841
+-3.4191072800447717
  Palabras del topic: 
-Palabra plane 	 %0.030777026
-Palabra hours 	 %0.02521256
-Palabra hour 	 %0.020320525
-Palabra late 	 %0.020257175
-Palabra gate 	 %0.016087633
-Palabra waiting 	 %0.014557026
-Palabra flight 	 %0.013849149
-Palabra delayed 	 %0.013553754
-Palabra sitting 	 %0.011087134
-Palabra airline 	 %0.011009083
-Palabra airport 	 %0.009694168
-Palabra change 	 %0.008904192
-Palabra wifi 	 %0.00872834
-Palabra hrs 	 %0.008650511
-Palabra left 	 %0.008240385
-Palabra make 	 %0.0078479815
-Palabra flightr 	 %0.007720192
-Palabra crew 	 %0.0075974665
-Palabra day 	 %0.0072561535
-Palabra customers 	 %0.007019659
+Palabra co 	 %0.1297314
+Palabra http 	 %0.12475488
+Palabra our 	 %0.06359704
+Palabra fleek 	 %0.051816344
+Palabra this 	 %0.049509
+Palabra fleet 	 %0.04849367
+Palabra you 	 %0.037169747
+Palabra help 	 %0.036585514
+Palabra jetblue 	 %0.024633411
+Palabra do 	 %0.022516545
+Palabra with 	 %0.021401282
+Palabra no 	 %0.019773532
+Palabra customer 	 %0.018350579
+Palabra please 	 %0.018260816
+Palabra service 	 %0.01629978
+Palabra that 	 %0.015154196
+Palabra we 	 %0.013766822
+Palabra but 	 %0.01286877
+Palabra an 	 %0.012674769
+Palabra have 	 %0.012124193
 
--9.247739582131425
+-4.217852337863217
  Palabras del topic: 
-Palabra co 	 %0.13367626
-Palabra http 	 %0.12679134
-Palabra love 	 %0.02174226
-Palabra fleet 	 %0.01875434
-Palabra fleek 	 %0.018754216
-Palabra great 	 %0.017938297
-Palabra guys 	 %0.016339283
-Palabra rt 	 %0.011327928
-Palabra you 	 %0.009512909
-Palabra tickets 	 %0.0077207685
-Palabra job 	 %0.0071487417
-Palabra work 	 %0.0071065347
-Palabra app 	 %0.006887762
-Palabra flight 	 %0.0068662264
-Palabra destinationdragons 	 %0.0067910934
-Palabra https 	 %0.0065452713
-Palabra southwest 	 %0.0065439832
-Palabra face_with_tears_of_joy 	 %0.0065260795
-Palabra airline 	 %0.00649878
-Palabra free 	 %0.006435804
-topic coherence 	: -3.991008168303959
-
--3.453234064270722
- Palabras del topic: 
-Palabra it 	 %0.08545312
-Palabra of 	 %0.08292982
-Palabra in 	 %0.07977052
-Palabra great 	 %0.06695746
-Palabra service 	 %0.061152477
-Palabra your 	 %0.05865601
-Palabra was 	 %0.051101405
-Palabra not 	 %0.04980014
-Palabra love 	 %0.04631552
-Palabra but 	 %0.039895892
-Palabra on 	 %0.037478756
-Palabra be 	 %0.035292685
-Palabra airline 	 %0.030223286
-Palabra flight 	 %0.027591476
-Palabra just 	 %0.026637146
-Palabra with 	 %0.023648188
-Palabra we 	 %0.02342418
-Palabra jetblue 	 %0.020727212
-Palabra all 	 %0.01907421
-Palabra this 	 %0.018939737
-
--3.78666213538917
- Palabras del topic: 
-Palabra co 	 %0.16888106
-Palabra http 	 %0.14919952
-Palabra on 	 %0.12269364
-Palabra flight 	 %0.11823734
-Palabra our 	 %0.07348805
-Palabra great 	 %0.062356222
-Palabra can 	 %0.034062367
-Palabra from 	 %0.02939575
-Palabra it 	 %0.024684567
-Palabra jetblue 	 %0.02016586
-Palabra love 	 %0.017748557
-Palabra my 	 %0.017338526
-Palabra best 	 %0.015301201
-Palabra with 	 %0.015121903
-Palabra we 	 %0.013379873
-Palabra guys 	 %0.012339804
-Palabra be 	 %0.0122663
-Palabra just 	 %0.012172328
-Palabra was 	 %0.011523195
-Palabra that 	 %0.010806516
-
--4.00558943238744
- Palabras del topic: 
-Palabra will 	 %0.08546634
-Palabra with 	 %0.07274528
-Palabra awesome 	 %0.06611359
-Palabra me 	 %0.06570898
-Palabra jfk 	 %0.062235575
-Palabra now 	 %0.05445847
-Palabra thanks 	 %0.054206137
-Palabra my 	 %0.049302533
-Palabra you 	 %0.04883487
-Palabra was 	 %0.046002552
-Palabra in 	 %0.040502902
-Palabra at 	 %0.04047396
-Palabra but 	 %0.03142855
-Palabra guys 	 %0.031026669
-Palabra be 	 %0.027895296
-Palabra can 	 %0.025229303
-Palabra on 	 %0.024406984
-Palabra do 	 %0.02155586
-Palabra flight 	 %0.021168599
-Palabra it 	 %0.01949866
-
--4.3493743522627675
- Palabras del topic: 
-Palabra so 	 %0.15412796
-Palabra my 	 %0.11808635
-Palabra much 	 %0.08714353
-Palabra thanks 	 %0.08702527
-Palabra jetblue 	 %0.08637934
-Palabra it 	 %0.05460356
-Palabra fly 	 %0.046103597
-Palabra flight 	 %0.045907088
-Palabra was 	 %0.04348971
-Palabra from 	 %0.04177054
-Palabra your 	 %0.03501227
-Palabra of 	 %0.025196224
-Palabra me 	 %0.023501359
-Palabra are 	 %0.019785404
-Palabra airline 	 %0.017255161
-Palabra all 	 %0.01656603
-Palabra do 	 %0.014668183
-Palabra this 	 %0.012568553
-Palabra have 	 %0.011037958
-Palabra that 	 %0.010251996
-
--4.360180857209695
- Palabras del topic: 
-Palabra you 	 %0.13576561
-Palabra are 	 %0.09159321
-Palabra that 	 %0.06902367
-Palabra at 	 %0.06649612
-Palabra good 	 %0.052620985
-Palabra we 	 %0.05194546
-Palabra this 	 %0.04872969
-Palabra me 	 %0.0474542
-Palabra guys 	 %0.041859053
-Palabra have 	 %0.03833715
-Palabra just 	 %0.035968117
-Palabra best 	 %0.034658235
-Palabra do 	 %0.030110378
-Palabra love 	 %0.028023185
-Palabra great 	 %0.02769712
-Palabra your 	 %0.02418516
-Palabra not 	 %0.023465225
-Palabra thanks 	 %0.023025738
-Palabra jetblue 	 %0.020766268
-Palabra in 	 %0.015445178
+Palabra in 	 %0.054223724
+Palabra we 	 %0.047039133
+Palabra for 	 %0.04612325
+Palabra plane 	 %0.03566845
+Palabra no 	 %0.033449035
+Palabra at 	 %0.033420324
+Palabra that 	 %0.028250081
+Palabra was 	 %0.027459543
+Palabra what 	 %0.022186436
+Palabra of 	 %0.020734012
+Palabra this 	 %0.020495217
+Palabra all 	 %0.019722812
+Palabra had 	 %0.017619556
+Palabra customer 	 %0.016389512
+Palabra service 	 %0.015669888
+Palabra off 	 %0.015456306
+Palabra were 	 %0.015382011
+Palabra getting 	 %0.015258451
+Palabra told 	 %0.015217867
+Palabra boston 	 %0.014837481
 

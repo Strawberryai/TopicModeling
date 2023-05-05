@@ -12,6 +12,7 @@ import numpy as np
 
 import nltk
 nltk.download('stopwords')
+nltk.download('wordnet')
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from nltk.tokenize import RegexpTokenizer
@@ -44,8 +45,8 @@ DEV_SIZE        = 0.2                                       # Indice del tamaño
 RANDOM_STATE    = 42                                        # Seed del random split
 MESSAGE         = ""                                        # Test message
 AIRLINE         = "Delta"                                   # Aerolinea a filtrar
-SENTIMIENTO       = "holad"                                # Sentimiento a filtrar
-SENTIMIENTO     = "buenas"
+SENTIMIENTO     = "positive"                                # Sentimiento a filtrar
+
 
 DEBUG           = True                                      # Flag para mostrar el archivo de debug con el dataset preprocesado
 DEBUG_FILE      = "debug.csv"                               # Archivo que muestra el dataframe preprocesado
@@ -86,6 +87,7 @@ def usage():
     print(f"-e                  emoji to text                                   DEFAULT: {DEMOJI}")
     print(f"-c                  clean text                                      DEFAULT: {CLEANING}")
     print(f"-s                  remove stop words                               DEFAULT: {STOP_WORDS}")
+    print(f"--stopw             remove stop words                               DEFAULT: {STOP_WORDS}")
     print(f"-f                  remove freq words                               DEFAULT: {FREQ_WORDS}")
     print(f"-l                  lematize text                                   DEFAULT: {LEMATIZE}")
     print(f"-v                  vectorizing function                            DEFAULT: {VECTORIZING}")
@@ -133,6 +135,9 @@ def load_options(options):
             CLEANING = bool(arg) 
         elif opt == "-s":
             STOP_WORDS = bool(arg) 
+            print('prueba')
+        elif opt == "--stopw":
+            STOP_WORDS = True
         elif opt == "-f":
             FREQ_WORDS = bool(arg) 
         elif opt == "-l":
@@ -249,7 +254,7 @@ def guardar_resultadosLDA(configuracion, resultado, topic_coherence):
     iterations = configuracion['iterations']
     alpha = configuracion['alpha']
 
-    filename = "results/t_"+str(num_topics)+"_ch_"+str(chunksize)+"_p_"+str(passes)+"_it_"+str(iterations)+"_a_"+str(alpha)+"_"+VECTORIZING+".txt"
+    filename = "results/"+AIRLINE+"_"+SENTIMIENTO+"_t_"+str(num_topics)+"_ch_"+str(chunksize)+"_p_"+str(passes)+"_it_"+str(iterations)+"_a_"+str(alpha)+"_"+VECTORIZING+".txt"
     with open(filename, "w") as file:
 
         # Escribir los resultados en el archivo de texto
@@ -693,10 +698,10 @@ def main():
 
     #parametros para el training
     # Set training parameters.
-    num_topics = 5
-    chunksize = 40000
-    passes = 20
-    iterations = 800
+    num_topics = 10
+    chunksize = 80000
+    passes = 50
+    iterations = 700
     eval_every = None  # Don't evaluate model perplexity, takes too much time.
     alpha=0.00001
 
@@ -736,7 +741,7 @@ if __name__ == "__main__":
     try:
         # options: registra los argumentos del usuario
         # remainder: registra los campos adicionales introducidos -> entrenar_knn.py esto_es_remainder
-        options, remainder = getopt(argv[1:], 'hi:o:t:d:g:w:e:c:s:f:l:v:u:m:', ['help', 'input', 'output', 'target', 'debug', 'debugfile', 'message=', 'airline=', 'sentimiento='])
+        options, remainder = getopt(argv[1:], 'h:i:o:t:d:g:w:e:c:s:f:l:v:u:m', ['help', 'input', 'output', 'target', 'debug', 'debugfile', 'message=', 'airline=', 'sentimiento=', 'stopw'])
         
     except getopt.GetoptError as err:
         # Error al parsear las opciones del comando

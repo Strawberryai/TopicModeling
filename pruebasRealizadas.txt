@@ -93,3 +93,276 @@ iterations 	: 800
 alpha 	: 1e-05
 Vectorizing 	: BOW
 ------------------------------------------ 
+Numero de topicos 	: 5
+chunksize 	: 40000
+passes 	: 20
+iterations 	: 800
+alpha 	: 1e-05
+Vectorizing 	: BOW
+------------------------------------------ 
+Numero de topicos 	: 5
+chunksize 	: 40000
+passes 	: 20
+iterations 	: 800
+alpha 	: 1e-05
+Vectorizing 	: BOW
+------------------------------------------ 
+Numero de topicos 	: 5
+chunksize 	: 40000
+passes 	: 20
+iterations 	: 800
+alpha 	: 1e-05
+Vectorizing 	: BOW
+------------------------------------------ 
+Numero de topicos 	: 5
+chunksize 	: 40000
+passes 	: 20
+iterations 	: 500
+alpha 	: 1e-05
+Vectorizing 	: BOW
+------------------------------------------ 
+Numero de topicos 	: 5
+chunksize 	: 40000
+passes 	: 20
+iterations 	: 200
+alpha 	: 1e-05
+Vectorizing 	: BOW
+------------------------------------------ 
+Numero de topicos 	: 5
+chunksize 	: 10000
+passes 	: 20
+iterations 	: 500
+alpha 	: 1e-05
+Vectorizing 	: BOW
+------------------------------------------ 
+Numero de topicos 	: 5
+chunksize 	: 50000
+passes 	: 20
+iterations 	: 500
+alpha 	: 1e-05
+Vectorizing 	: BOW
+------------------------------------------ 
+Numero de topicos 	: 5
+chunksize 	: 40000
+passes 	: 10
+iterations 	: 500
+alpha 	: 1e-05
+Vectorizing 	: BOW
+------------------------------------------ 
+Numero de topicos 	: 5
+chunksize 	: 40000
+passes 	: 5
+iterations 	: 500
+alpha 	: 1e-05
+Vectorizing 	: BOW
+------------------------------------------ 
+Numero de topicos 	: 8
+chunksize 	: 40000
+passes 	: 10
+iterations 	: 500
+alpha 	: 1e-05
+Vectorizing 	: BOW
+------------------------------------------ 
+Numero de topicos 	: 10
+chunksize 	: 40000
+passes 	: 10
+iterations 	: 500
+alpha 	: 1e-05
+Vectorizing 	: BOW
+------------------------------------------ 
+Numero de topicos 	: 4
+chunksize 	: 40000
+passes 	: 10
+iterations 	: 500
+alpha 	: 1e-05
+Vectorizing 	: BOW
+------------------------------------------ 
+Numero de topicos 	: 3
+chunksize 	: 40000
+passes 	: 10
+iterations 	: 500
+alpha 	: 1e-05
+Vectorizing 	: BOW
+------------------------------------------ 
+Numero de topicos 	: 2
+chunksize 	: 40000
+passes 	: 10
+iterations 	: 500
+alpha 	: 1e-05
+Vectorizing 	: BOW
+------------------------------------------ 
+Numero de topicos 	: 1
+chunksize 	: 40000
+passes 	: 10
+iterations 	: 500
+alpha 	: 1e-05
+Vectorizing 	: BOW
+------------------------------------------ 
+Numero de topicos 	: 3
+chunksize 	: 40000
+passes 	: 20
+iterations 	: 500
+alpha 	: 1e-05
+Vectorizing 	: BOW
+------------------------------------------ 
+Numero de topicos 	: 3
+chunksize 	: 40000
+passes 	: 30
+iterations 	: 500
+alpha 	: 1e-05
+Vectorizing 	: BOW
+------------------------------------------ 
+Numero de topicos 	: 3
+chunksize 	: 40000
+passes 	: 10
+iterations 	: 700
+alpha 	: 1e-05
+Vectorizing 	: BOW
+------------------------------------------ 
+Numero de topicos 	: 3
+chunksize 	: 40000
+passes 	: 10
+iterations 	: 1000
+alpha 	: 1e-05
+Vectorizing 	: BOW
+------------------------------------------ 
+Numero de topicos 	: 3
+chunksize 	: 40000
+passes 	: 10
+iterations 	: 1200
+alpha 	: 1e-05
+Vectorizing 	: BOW
+------------------------------------------ 
+Numero de topicos 	: 3
+chunksize 	: 40000
+passes 	: 10
+iterations 	: 250
+alpha 	: 1e-05
+Vectorizing 	: BOW
+------------------------------------------ 
+Numero de topicos 	: 3
+chunksize 	: 40000
+passes 	: 10
+iterations 	: 250
+alpha 	: 1e-05
+Vectorizing 	: BOW
+------------------------------------------ 
+Numero de topicos 	: 3
+chunksize 	: 40000
+passes 	: 10
+iterations 	: 700
+alpha 	: 1e-05
+Vectorizing 	: BOW
+------------------------------------------ 
+Numero de topicos 	: 3
+chunksize 	: 40000
+passes 	: 10
+iterations 	: 800
+alpha 	: 1e-05
+Vectorizing 	: BOW
+------------------------------------------ 
+Numero de topicos 	: 3
+chunksize 	: 40000
+passes 	: 10
+iterations 	: 1500
+alpha 	: 1e-05
+Vectorizing 	: BOW
+------------------------------------------ 
+Numero de topicos 	: 3
+chunksize 	: 40000
+passes 	: 10
+iterations 	: 1500
+alpha 	: 1e-05
+Vectorizing 	: BOW
+------------------------------------------ 
+Numero de topicos 	: 3
+chunksize 	: 40000
+passes 	: 10
+iterations 	: 1500
+alpha 	: 1e-05
+Vectorizing 	: BOW
+------------------------------------------ 
+Numero de topicos 	: 3
+chunksize 	: 40000
+passes 	: 10
+iterations 	: 1500
+alpha 	: 1e-05
+Vectorizing 	: BOW
+------------------------------------------ 
+Numero de topicos 	: 3
+chunksize 	: 40000
+passes 	: 10
+iterations 	: 1500
+alpha 	: 1e-05
+Vectorizing 	: BOW
+------------------------------------------ 
+Numero de topicos 	: 3
+chunksize 	: 40000
+passes 	: 10
+iterations 	: 700
+alpha 	: 1e-05
+Vectorizing 	: BOW
+------------------------------------------ 
+Numero de topicos 	: 10
+chunksize 	: 40000
+passes 	: 10
+iterations 	: 700
+alpha 	: 1e-05
+Vectorizing 	: BOW
+------------------------------------------ 
+Numero de topicos 	: 7
+chunksize 	: 40000
+passes 	: 10
+iterations 	: 700
+alpha 	: 1e-05
+Vectorizing 	: BOW
+------------------------------------------ 
+Numero de topicos 	: 10
+chunksize 	: 40000
+passes 	: 10
+iterations 	: 1200
+alpha 	: 1e-05
+Vectorizing 	: BOW
+------------------------------------------ 
+Numero de topicos 	: 10
+chunksize 	: 40000
+passes 	: 10
+iterations 	: 1200
+alpha 	: 1e-05
+Vectorizing 	: BOW
+------------------------------------------ 
+Numero de topicos 	: 3
+chunksize 	: 40000
+passes 	: 10
+iterations 	: 700
+alpha 	: 1e-05
+Vectorizing 	: BOW
+------------------------------------------ 
+Numero de topicos 	: 7
+chunksize 	: 60000
+passes 	: 20
+iterations 	: 700
+alpha 	: 1e-05
+Vectorizing 	: BOW
+------------------------------------------ 
+Numero de topicos 	: 7
+chunksize 	: 60000
+passes 	: 50
+iterations 	: 700
+alpha 	: 1e-05
+Vectorizing 	: BOW
+------------------------------------------ 
+Numero de topicos 	: 7
+chunksize 	: 80000
+passes 	: 50
+iterations 	: 700
+alpha 	: 1e-05
+Vectorizing 	: BOW
+------------------------------------------ 
+Numero de topicos 	: 10
+chunksize 	: 80000
+passes 	: 50
+iterations 	: 700
+alpha 	: 1e-05
+Vectorizing 	: BOW
+------------------------------------------ 
