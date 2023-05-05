@@ -686,7 +686,8 @@ def main():
         iterations=iterations,
         num_topics=num_topics,
         passes=passes,
-        eval_every=eval_every
+        eval_every=eval_every,
+        coherence = 'c_v'  #cambiar la medida por defecto para la coherence
     )
 
     configuracion = {'n_topics': num_topics,
