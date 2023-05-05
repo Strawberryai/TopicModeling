@@ -32,9 +32,10 @@ from sklearn.linear_model               import LogisticRegression
 from sklearn.feature_extraction.text    import CountVectorizer, TfidfVectorizer
 from sklearn.naive_bayes                import GaussianNB, MultinomialNB, BernoulliNB
 
-# Train LDA model.
+# gensim lda
 from gensim.models import LdaModel
 from gensim.matutils import Sparse2Corpus
+from gensim.models.coherencemodel import CoherenceModel
 
 # Variables globales
 INPUT_FILE      = "./data/TweetsTrainDev.csv"               # Path del archivo de entrada
@@ -699,9 +700,9 @@ def main():
     #parametros para el training
     # Set training parameters.
     num_topics = 10
-    chunksize = 80000
-    passes = 50
-    iterations = 700
+    chunksize = 40000
+    passes = 10
+    iterations = 1200
     eval_every = None  # Don't evaluate model perplexity, takes too much time.
     alpha=0.00001
 
@@ -717,8 +718,7 @@ def main():
         iterations=iterations,
         num_topics=num_topics,
         passes=passes,
-        eval_every=eval_every,
-        coherence = 'c_v'  #cambiar la medida por defecto para la coherence
+        eval_every=eval_every
     )
 
     configuracion = {'n_topics': num_topics,
@@ -726,13 +726,22 @@ def main():
                      'passes':passes,
                      'iterations':iterations,
                      'alpha':alpha
-                     }
+                    }
 
     top_topics = model.top_topics(corpus)
 
     # Average topic coherence is the sum of topic coherences of all topics, divided by the number of topics.
     avg_topic_coherence = sum([t[1] for t in top_topics]) / num_topics
     print('Average topic coherence: %.4f.' % avg_topic_coherence)
+
+    cm = CoherenceModel(model=model, corpus=corpus, dictionary=dictionary, coherence='c_v')
+    #cm = CoherenceModel(model=model, corpus=corpus, dictionary=dictionary, coherence='c_v')
+    # To get the final coherence value simply type:
+    print("Coherence calculado con lo del c_v"+str(cm.get_coherence()))
+
+    #cm = CoherenceModel(model=model, corpus=corpus, dictionary=dictionary, coherence='u_mass')
+    # To get the final coherence value simply type:
+    #print("Coherence calculado con lo del u_mass"+str(cm.get_coherence()))
 
     from pprint import pprint
     pprint(top_topics)
