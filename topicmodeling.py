@@ -59,7 +59,7 @@ FREQ_WORDS      = True                                      # Borramos las palab
 LEMATIZE        = True                                      # Lematizamos el texto (realmente hacemos Stemming)
 VECTORIZING     = "TFIDF"                                   # Sistema de vectorización: BOW | TFIDF
 
-SAMPLING        =  "NONE "                                  # Método de muestreo de nuestro dataset: OVERSAMPLING \ UNDERSAMPLING | NONE
+SAMPLING        = "NONE"                                    # Método de muestreo de nuestro dataset: OVERSAMPLING \ UNDERSAMPLING | NONE
 
 # Downloads necesarios
 stop_words = stopwords.words()
@@ -130,9 +130,9 @@ def load_options(options):
         elif opt == "-e":
             DEMOJI = bool(arg) 
         elif opt == "-c":
-            CLEANING = bool(arg) 
+            CLEANING = False 
         elif opt == "-s":
-            STOP_WORDS = bool(arg) 
+            STOP_WORDS = True
         elif opt == "-f":
             FREQ_WORDS = bool(arg) 
         elif opt == "-l":
@@ -736,7 +736,7 @@ if __name__ == "__main__":
     try:
         # options: registra los argumentos del usuario
         # remainder: registra los campos adicionales introducidos -> entrenar_knn.py esto_es_remainder
-        options, remainder = getopt(argv[1:], 'hi:o:t:d:g:w:e:c:s:f:l:v:u:m:', ['help', 'input', 'output', 'target', 'debug', 'debugfile', 'message=', 'airline=', 'sentimiento='])
+        options, remainder = getopt(argv[1:], 'hi:o:t:d:g:w:e:c:sf:l:v:u:m:', ['help', 'input', 'output', 'target', 'debug', 'debugfile', 'message=', 'airline=', 'sentimiento='])
         
     except getopt.GetoptError as err:
         # Error al parsear las opciones del comando
