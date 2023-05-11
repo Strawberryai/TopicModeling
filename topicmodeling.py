@@ -295,6 +295,35 @@ def guardar_resultadosLDA(configuracion, resultado, topic_coherence, cv):
         archivo.write(f"c_v coherence \t: {cv}\n")
         archivo.write("------------------------------------------ \n")
         
+def calcular_ngrams(df, n):
+    from nltk import ngrams
+    from collections import Counter
+
+    # Definir la función para calcular n-gramas repetidos
+    def compute_repeated_ngrams(texts, n):
+        all_ngrams = []
+
+        for text in texts:
+            #tokens = text.split()  # Dividir el texto en palabras
+            n_grams = list(ngrams(text, n))  # Calcular los n-gramas
+            all_ngrams.extend(n_grams)
+
+        # Contar la frecuencia de cada n-grama
+        ngram_freq = Counter(all_ngrams)
+
+        # Filtrar los n-gramas repetidos
+        repeated_ngrams = [gram for gram, freq in ngram_freq.items() if freq > 1]
+
+        return repeated_ngrams
+
+    # Aplicar la función a cada texto del DataFrame
+    repeated_ngrams = compute_repeated_ngrams(df['wo_stopfreq_lem'], n)
+
+    # Crear un DataFrame con los n-gramas repetidos
+    result_df = pd.DataFrame(repeated_ngrams)
+    result_df.to_csv('output.txt', sep='\t', index=False)
+
+    print("N-gramas repetidos guardados en output.txt")
 
 #######################################################################################
 #                               PREPROCESADO DE TEXTO                                 #
@@ -645,6 +674,9 @@ def main():
         # Remove words that are only one character.
         ml_dataset['wo_stopfreq_lem'] = [[token for token in doc if len(token) > 1] for doc in ml_dataset['wo_stopfreq_lem']]
 
+        #HACER LOS NGRAMAS
+        calcular_ngrams(ml_dataset, 2)
+        
         #dataframe = pd.DataFrame(bow.toarray())
         #Remove rare and common tokens.
         from gensim.corpora import Dictionary
@@ -653,13 +685,15 @@ def main():
         dictionary = Dictionary(ml_dataset['wo_stopfreq_lem'])
 
         # Filter out words that occur less than 20 documents, or more than 50% of the documents.
-        dictionary.filter_extremes(no_below=20, no_above=0.80)
+        # dictionary.filter_extremes(no_below=20, no_above=0.80)
 
         # Bag-of-words representation of the documents.
         corpus = [dictionary.doc2bow(doc) for doc in ml_dataset['wo_stopfreq_lem']]
         # Make an index to word dictionary.
         temp = dictionary[0]  # This is only to "load" the dictionary.
         id2word = dictionary.id2token
+
+
 
     # Añadimos los atributos seleccionados al dataset
     #dataframe['__target__'] = ml_dataset['__target__']
@@ -673,15 +707,15 @@ def main():
     #parametros para el training
     # Set training parameters.
     #num_topics = 10
-    chunksize = 20000
+    chunksize = 40000
     passes = 20
-    iterations = 500
+    iterations = 1200
     eval_every = None  # Don't evaluate model perplexity, takes too much time.
     alpha=0.0001
 
     ##########################          Barrido de valores de num_topics               ####################################
     
-    for i in range(1, 13): #
+    for i in range(10, 11): #
 
         num_topics = i
 
